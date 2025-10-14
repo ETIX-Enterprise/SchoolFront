@@ -3,12 +3,13 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { Route , RouterProvider , createBrowserRouter , createRoutesFromElements } from 'react-router-dom'
-import LayOut from './LayOut.tsx'
+import Landing from './components/Landing.tsx'
+
 
 
 const route = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<LayOut />}>
+    <Route element={<Landing />}>
       <Route path='' element={<App/>} />
     </Route>
   )

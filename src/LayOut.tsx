@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import  { useCallback, useState } from 'react'
 import {  BiArrowFromLeft, BiMenu, BiUser} from 'react-icons/bi'
 import logo from "/Icona/logo.png"
 import { NavLink } from 'react-router-dom'
@@ -12,8 +12,6 @@ import support from '/Icona/support.png'
 import tracking from '/Icona/tracking.png'
 import notifications from '/Icona/notifications.png'
 import Header from './components/header' 
-
-
 
 function LayOut() {
   const navigations = [
@@ -29,13 +27,13 @@ function LayOut() {
   {'id':3  , 'name' : 'Support' , 'path':'/Support' , 'icon':<img src={support} className='w-5 h-5' /> },
  ]
   const [ isNavOpen , setIsNavOpen] = useState(true)
-  const handleNav = ()=>{
+  const handleNav = useCallback( ()=>{
     if(!isNavOpen){
       setIsNavOpen(true)
     }else{
       setIsNavOpen(false)
     }
-  }
+  } , [isNavOpen])
   return (
     <div className='w-full h-screen'>
       {isNavOpen ?
@@ -115,6 +113,7 @@ function LayOut() {
             <BsArrow90DegRight  className='w-5 h-5 text-gray-600' />
             </span>
         </header>
+        
         </aside>
        }
 
