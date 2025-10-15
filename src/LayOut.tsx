@@ -1,4 +1,4 @@
-import  { useCallback, useState } from 'react'
+import  { useCallback, useEffect, useState } from 'react'
 import {  BiArrowFromLeft, BiMenu, BiUser} from 'react-icons/bi'
 import logo from "/Icona/logo.png"
 import { NavLink } from 'react-router-dom'
@@ -12,8 +12,19 @@ import support from '/Icona/support.png'
 import tracking from '/Icona/tracking.png'
 import notifications from '/Icona/notifications.png'
 import Header from './components/header' 
+import UseIsSmallScreen from './Hooks/UseIsSmallScreen'
 
 function LayOut() {
+  const isSmallScreen = UseIsSmallScreen()
+  // track for small screen
+  useEffect(() =>{
+    if(isSmallScreen == true){
+      setIsNavOpen(false);
+    }else{
+      setIsNavOpen(true)
+    }
+  } ,[isSmallScreen])
+  
   const navigations = [
     {'id':1 , 'name':'OVERVIEW' , 'path':'/' , 'icon' : <img src={dashboard} className='w-5 h-5' /> },
     {'id':2 , 'name':'Students' , 'path':'/students' , 'icon' :  <img src={students} className='w-5 h-5' />},

@@ -1,11 +1,16 @@
 import React from 'react'
 import Lottie from 'lottie-react'
-import typin from '../assets/lottie/typing.json'
 
-function Typin() {
+type propsTypes = {
+  data : {} ,
+  width : number ,
+  height : number
+}
+
+function Typin({data , width , height} : propsTypes) {
   return (
     <>
-    <Lottie  animationData={typin} className='w-[200px] h-[200px]'  loop={true} />
+    <Lottie  animationData={data} className={`w-[200px] h-[200px]`}  loop={true} />
     </>
   )
 }
