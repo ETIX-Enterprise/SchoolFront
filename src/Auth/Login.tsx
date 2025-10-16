@@ -2,6 +2,11 @@ import React from 'react'
 import logo from "/Icona/logo.png"
 
 function Login() {
+ 
+  // function to handle form submmission
+  const handleSubmit = async()=>{
+    console.log("form submitted")
+  }
 
   return (
     <div className='w-full sm:flex h-screen'>
@@ -12,9 +17,14 @@ function Login() {
                 <img src={logo} className='w-7 mr-1 h-7' />
             <h2 className='text-[#003DD0] font-bold  mt-1 text-[16px] font-montserrat'>VUDUKA</h2>
        </span>
-       <div className="flex-1 space"></div>
+       <div className="flex-1 space-y-1">
+        <h1 className='text-[#000000] text-[40px] font-normal font-Quicksand'>Login</h1>
+        <p className='text-[16px] text-[#2F2B3DB2] '>Login to access your Golobe account</p>
+       </div>
         </header>
-        
+        <div className="">
+          <form action="" onSubmit={handleSubmit} method="post"></form>
+        </div>
       </div>
       {/* aside description */}
       <div className="w-1/2 h-full p-5 bg-[#003DD099] ">
