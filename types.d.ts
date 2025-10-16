@@ -8,7 +8,14 @@ interface User extends UserLoginInfo {
 }
 
 
-export default User ;
+interface userSignupInfo {
+    email : string,
+    name : string,
+    password : string ,
+    phoneNumber : number
+}
+
+export { User , userSignupInfo } ;
 
 
 

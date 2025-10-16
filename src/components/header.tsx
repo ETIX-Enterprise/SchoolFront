@@ -10,7 +10,6 @@ import Typin from './typin'
     type HeaderProps = {
         isNavOpen ? : boolean
     }
-
 const Header = React.memo (({ isNavOpen } : HeaderProps ) => {
 const [ isTyping , setIsTyping] = useState(false)
 

@@ -5,6 +5,7 @@ import { BsApple, BsEye , BsEyeSlash } from 'react-icons/bs'
 import { FaFacebook } from 'react-icons/fa'
 import { GrGoogle } from 'react-icons/gr'
 import landing from '/images/landing.png'
+import { useNavigate } from 'react-router-dom'
 
 interface UserLoginInfo {
     email : string ,
@@ -24,6 +25,8 @@ function Login() {
    const [rememberMe , setRememberMe] = useState<boolean>(false)
    //track the password
    const [isPasswordShown , setIsPasswordShown] = useState<boolean>(false)
+   //navigate
+   const navigate  = useNavigate()
 
    //social logins
    const socialLogins = [
@@ -121,7 +124,7 @@ function Login() {
         Login
        </button>
        <p className='font-medium text-center text-[14px] text-black'>
-        Don’t have an account? <span className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Sign up</span>
+        Don’t have an account? <span onClick={()=> navigate("/Signup" ,{viewTransition: true})} className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Sign up</span>
        </p>
     </div>
     {/** social logins */}
@@ -146,7 +149,17 @@ function Login() {
         <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[48px] left-[1213px]"></div>
       </div>
       <div className="">
-        <img src={landing} alt="landing" className='absolute top-[-4px] left-[630px] w-[300px] h-[400px]' />
+        <div className="p-5 flex justify-center">
+          <div className="">
+          <h1 className='text-white text-[16px]  font-bold'>Vuduka School Management</h1>
+          <p className='font-normal text-[14px] text-white'>
+            We handle the journey so schools can focus on learning.
+            <br/>
+            Smart transport
+          </p>
+        </div>
+        </div>
+        <img src={landing} alt="landing" className='absolute top-[150px] left-[630px] w-[300px] h-[400px]' />
       </div>
       </div>
     </div>
