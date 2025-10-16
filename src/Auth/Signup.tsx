@@ -145,19 +145,18 @@ function Signup() {
       </span>
 
     </div>
-    <div className="flex justify-between max-w-[512px]">
-      <div className="flex space-x-2">
+    <div className="flex justify-center max-w-[512px]">
+      <div className="">
         <input type="checkbox"  name='Remember me' onChange={()=> setRememberMe(true)} className='w-[20px] h-[20px] transition-all duration-700 rounded-[5px] cursor-pointer appearance-none  border border-gray-400 checked:bg-blue-700 checked:border-2 checked:border-blue-700 ' id="" />
-        <p className='text-[14px] text-[#000000] font-medium'>Remember me</p>
       </div>
-      <div className="cursor-pointer hover:bg-gray-100  transition-all duration-500 rounded">
-        <p className='text-[14px] text-[#FF8682] font-medium'>Forgot Password</p>
+      <div className="  ml-2  ">
+        <p className='text-[14px] text-gray-400 font-medium'>I agree to all the <span className='text-[#FF8682] font-medium'> Terms</span> and <span className='text-[#FF8682] font-medium'>Privacy Policies</span></p>
       </div>
     </div>
     {/* submission button*/ }
     <div className="flex-1  space-y-3">
        <button className='bg-[#699BFE] cursor-pointer text-[14px] font-semibold text-white hover:bg-[#528bfe] hover:scale-105 transition-all duration-700 sm:w-[512px] w-full h-[48px] rounded-[4px]'>
-        Login
+        Sign up
        </button>
        <p className='font-medium text-center text-[14px] text-black'>
         Don’t have an account? <span className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Sign up</span>
