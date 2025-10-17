@@ -115,7 +115,7 @@ function Signup() {
                    peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
                    peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
       >
-       Email
+       Phone number
       </label>
     </div>
 </div>
@@ -194,7 +194,7 @@ function Signup() {
           </p>
         </div>
         </div>
-        <img src={landing} alt="landing" className='absolute top-[150px] left-[630px] w-[300px] h-[400px]' />
+        <img src={landing} alt="landing" className='absolute top-[120px] left-[910px] w-[370px] h-[470px]' />
       </div>
       </div>
     </div>
