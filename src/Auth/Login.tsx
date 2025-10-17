@@ -54,10 +54,10 @@ function Login() {
              <header className='p-2'>
             <span className='flex'>
                 <img src={logo} className='w-7 mr-1 h-7' />
-            <h2 className='text-[#003DD0] font-bold  mt-1 text-[16px] font-montserrat'>VUDUKA</h2>
+            <h2 className='text-[#003DD0] font-bold  mt-1 text-[13px] font-montserrat'>VUDUKA</h2>
        </span>
        <div className="flex-1 space-y-1">
-        <h1 className='text-[#000000] text-[40px] font-normal font-Quicksand'>Login</h1>
+        <h1 className='text-[#000000] text-[30px] font-normal font-Quicksand'>Login</h1>
         <p className='text-[16px] text-[#2F2B3DB2] '>Login to access your Golobe account</p>
        </div>
         </header>
@@ -71,16 +71,16 @@ function Login() {
         type="text"
         value={email}
         onChange={(e)=> setEmail(e.target.value)}
-        className="peer sm:w-[512px] sm:h-[52px] w-full border border-gray-400 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        className="peer sm:w-[512px] sm:h-[52px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
         placeholder=" "
       />
       <label
         htmlFor="email"
-        className="absolute text-gray-500 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
+        className="absolute text-gray-600 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
                    peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
-                   peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
+                   peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-900"
       >
-       Enter your email
+       Email
       </label>
     </div>
 
@@ -91,17 +91,16 @@ function Login() {
         type={isPasswordShown ? "text" : "password"}
         value={password}
         onChange={(e)=> setPassowrd(e.target.value)}
-        className="peer sm:w-[512px] sm:h-[52px] w-full border border-gray-400 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        className="peer sm:w-[512px] sm:h-[52px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
         placeholder=" "
       />
       <label
         htmlFor="password"
         className="absolute   w-28 h-5   text-gray-500 text-[13px] top-2 left-4 bg-white px-1 transition-all duration-200
                    peer-placeholder-shown:top-[-10px] peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
-                   peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
+                   peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-900"
       >
-      <p className='w-32'>Enter password</p> 
-
+      <p className='w-32'>Password</p> 
       </label>
             <span onClick={()=> setIsPasswordShown(prev => !prev)} className=" transition-all duration-700 cursor-pointer p-2 hover:bg-gray-200 rounded-full sm:absolute left-[450px] top-[9px]">
         {isPasswordShown ? <BsEye  className='text-black w-4 h-4'/> : 
@@ -159,7 +158,7 @@ function Login() {
           </p>
         </div>
         </div>
-        <img src={landing} alt="landing" className='absolute top-[150px] left-[630px] w-[300px] h-[400px]' />
+        <img src={landing} alt="landing" className='absolute top-[120px] left-[917px] w-[360px] h-[470px]' />
       </div>
       </div>
     </div>

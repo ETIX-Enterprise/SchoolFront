@@ -10,7 +10,7 @@ type propsTypes = {
 function Typin({data , width , height} : propsTypes) {
   return (
     <>
-    <Lottie  animationData={data} className={`w-[200px] h-[200px]`}  loop={true} />
+    <Lottie  animationData={data} className={`w-[${width}px] h-[${height}px]`}  loop={true} />
     </>
   )
 }

@@ -5,6 +5,7 @@ import { BsApple, BsEye , BsEyeSlash } from 'react-icons/bs'
 import { FaFacebook } from 'react-icons/fa'
 import { GrGoogle } from 'react-icons/gr'
 import landing from '/images/landing.png'
+import { useNavigate} from 'react-router-dom'
 
 
 function Signup() {
@@ -25,7 +26,8 @@ function Signup() {
     {"id":3 , "name":"apple" , "icon":<BsApple  className='w-5 h-5 text-black'/>}
    ]
 
-   //function to validate passwords
+   
+   const navigate = useNavigate()
 
 
   
@@ -159,7 +161,7 @@ function Signup() {
         Sign up
        </button>
        <p className='font-medium text-center text-[14px] text-black'>
-        Don’t have an account? <span className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Sign up</span>
+        Already have an account? <span onClick={()=> navigate("/" ,{viewTransition:true})} className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Login</span>
        </p>
     </div>
     {/** social logins */}
@@ -194,7 +196,7 @@ function Signup() {
           </p>
         </div>
         </div>
-        <img src={landing} alt="landing" className='absolute top-[120px] left-[910px] w-[370px] h-[470px]' />
+        <img src={landing} alt="landing" className='absolute top-[120px] left-[917px] w-[360px] h-[470px]' />
       </div>
       </div>
     </div>

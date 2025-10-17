@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Login from '../Auth/Login';
+import Typin from './typin';
+import typing from "../assets/lottie/loading.json"
 
 
 function Landing() {
@@ -7,7 +9,7 @@ function Landing() {
   useEffect(()=>{
     const activeIndex = setInterval(()=> {
       setIsActive(false)
-    }, 1000)
+    }, 1500)
 
     return ()=>{
       clearInterval(activeIndex)
@@ -26,10 +28,13 @@ function Landing() {
         <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[82px] left-[1207px]"></div>
         <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[48px] left-[1213px]"></div>
       </div>
-      <div className="flex justify-center items-center sm:h-[350px]">
+      <div className="flex justify-center items-center mt-10 sm:h-[350px]">
         <div className="">
          <p className='text-white text-center  text-[20px] font-bold'>Vuduka School Management</p>
          <p className='text-blue-100 text-center mt-1  text-[15px]  font-medium  '>We handle journeis that you can focus on studies </p>
+         <div className="p-5 ml-10 mt-5">
+          <Typin data={typing} width={200} height={200}  />
+         </div>
          </div>
          </div>
     </div>)
