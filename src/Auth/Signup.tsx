@@ -13,8 +13,9 @@ function Signup() {
    //form data
    const [email , setEmail] = useState<string>("")
    const [name , setName] = useState<string>("")
-   const [phoneNumber , setPhoneNumber] = useState<number>(0)
+   const [phoneNumber , setPhoneNumber] = useState<string>()
    const [password , setPassowrd] = useState<string>("")
+   const [confirmPassword  , setConfirmPassword] = useState<string>()
    const [rememberMe , setRememberMe] = useState<boolean>(false)
    //track the password
    const [isPasswordShown , setIsPasswordShown] = useState<boolean>(false)
@@ -48,7 +49,7 @@ function Signup() {
   return (
     <div className='w-full sm:flex h-screen'>
       {/* login form  */}
-      <div className="sm:w-1/2 w-full flex-1 space-y-2 h-full py-5 px-10">
+      <div className="sm:w-1/2 w-full flex-1 overflow-auto space-y-2 h-full py-5 px-10">
              <header className='p-2'>
             <span className='flex'>
                 <img src={logo} className='w-7 mr-1 h-7' />
@@ -59,7 +60,7 @@ function Signup() {
         <p className='text-[16px] text-[#2F2B3DB2] '>Login to access your Golobe account</p>
        </div>
         </header>
-        <div className="mt-7">
+        <div className="mt-7 ">
           <form action="" onSubmit={handleSubmit} method="post">
 
             {/** name input */}
@@ -70,13 +71,13 @@ function Signup() {
         type="text"
         value={name}
         onChange={(e)=> setName(e.target.value)}
-        className="peer sm:w-[512px] sm:h-[45px] w-full border border-gray-400 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        className="peer sm:w-[512px] sm:h-[45px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
         placeholder=" "
       />
       <label
         htmlFor="email"
-        className="absolute text-gray-500 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
-                   peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
+        className="absolute text-gray-700 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
+                   peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-500
                    peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
       >
        Name
@@ -90,13 +91,13 @@ function Signup() {
         type="text"
         value={email}
         onChange={(e)=> setEmail(e.target.value)}
-        className="peer  sm:h-[45px] w-full border border-gray-400 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        className="peer  sm:h-[45px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
         placeholder=" "
       />
       <label
         htmlFor="email"
-        className="absolute text-gray-500 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
-                   peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
+        className="absolute text-gray-700 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
+                   peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-500
                    peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
       >
        Email
@@ -105,16 +106,16 @@ function Signup() {
     {/** phone number input */}
                     <div className="relative w-full max-w-md">
       <input
-        type="text"
-        value={email}
-        onChange={(e)=> setEmail(e.target.value)}
-        className="peer  sm:h-[45px] w-full border border-gray-400 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        type='number'
+        value={phoneNumber}
+        onChange={(e)=> setPhoneNumber(e.target.value)}
+        className="peer  sm:h-[45px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
         placeholder=" "
       />
       <label
         htmlFor="email"
-        className="absolute text-gray-500 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
-                   peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
+        className="absolute text-gray-700 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
+                   peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-500
                    peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
       >
        Phone number
@@ -129,16 +130,42 @@ function Signup() {
         type={isPasswordShown ? "text" : "password"}
         value={password}
         onChange={(e)=> setPassowrd(e.target.value)}
-        className="peer sm:w-[512px] sm:h-[45px] w-full border border-gray-400 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        className="peer sm:w-[512px] sm:h-[45px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
         placeholder=" "
       />
       <label
         htmlFor="password"
-        className="absolute   w-28 h-5   text-gray-500 text-[13px] top-2 left-4 bg-white px-1 transition-all duration-200
-                   peer-placeholder-shown:top-[-10px] peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
+        className="absolute   w-28 h-5   text-gray-700 text-[13px] top-2 left-4 bg-white px-1 transition-all duration-200
+                   peer-placeholder-shown:top-[-10px] peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-500
                    peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
       >
       <p className='w-32'>Password</p> 
+
+      </label>
+            <span onClick={()=> setIsPasswordShown(prev => !prev)} className=" transition-all duration-700 cursor-pointer p-2 hover:bg-gray-200 rounded-full sm:absolute left-[450px] top-[9px]">
+        {isPasswordShown ? <BsEye  className='text-black w-4 h-4'/> : 
+        <BsEyeSlash  className='text-black w-4 h-4'/>}
+      </span>
+
+    </div>
+    
+    {/** confirm password input */}
+
+                    <div className="relative w-full max-w-md">
+      <input
+        type={isPasswordShown ? "text" : "password"}
+        value={confirmPassword}
+        onChange={(e)=> setConfirmPassword(e.target.value)}
+        className="peer sm:w-[512px] sm:h-[45px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        placeholder=" "
+      />
+      <label
+        htmlFor="password"
+        className="absolute   w-28 h-5   text-gray-700 text-[13px] top-2 left-4 bg-white px-1 transition-all duration-200
+                   peer-placeholder-shown:top-[-10px] peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-500
+                   peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-700"
+      >
+      <p className='w-32'>Confirm password</p> 
 
       </label>
             <span onClick={()=> setIsPasswordShown(prev => !prev)} className=" transition-all duration-700 cursor-pointer p-2 hover:bg-gray-200 rounded-full sm:absolute left-[450px] top-[9px]">
@@ -177,28 +204,68 @@ function Signup() {
         </div>
       </div>
       {/* aside description */}
-      <div className="w-1/2 sm:block hidden h-full p-5 bg-[#003DD099] ">
-            <div className="flex">
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[14px] left-[1247px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[37px] left-[1169px]"></div>
-        <div className="bg-[#003DD02E] w-[39px] h-[34px] absolute top-[82px] left-[1156px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[82px] left-[1207px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[48px] left-[1213px]"></div>
+<div className="w-1/2 sm:block hidden h-full p-8 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden">
+  {/* Modern Decorative Elements */}
+  <div className="absolute inset-0">
+    <div className="absolute top-8 right-12 w-6 h-6 border-2 border-white/20 rounded-lg transform rotate-45"></div>
+    <div className="absolute top-16 right-24 w-4 h-4 border border-white/15 rounded-full"></div>
+    <div className="absolute bottom-32 left-10 w-8 h-8 border-2 border-white/20 rounded-lg transform -rotate-12"></div>
+    <div className="absolute bottom-20 right-16 w-3 h-3 bg-white/10 rounded-full"></div>
+    <div className="absolute top-1/4 left-1/4 w-12 h-12 border-2 border-white/10 rounded-full"></div>
+  </div>
+
+  {/* Content Container */}
+  <div className="relative z-10 h-full flex flex-col">
+    {/* Header Section */}
+    <div className="text-left mb-12">
+      <div className="flex items-center space-x-3 mb-4">
+        <div className="w-3 h-8 bg-blue-300 rounded-full"></div>
+        <h1 className="text-2xl font-bold text-white">Vuduka</h1>
       </div>
-      <div className="">
-        <div className="p-5 flex justify-center">
-          <div className="">
-          <h1 className='text-white text-[16px]  font-bold'>Vuduka School Management</h1>
-          <p className='font-normal text-[14px] text-white'>
-            We handle the journey so schools can focus on learning.
-            <br/>
-            Smart transport
-          </p>
+      <p className="text-white text-lg font-semibold mb-2">
+        School Management System
+      </p>
+      <div className="w-12 h-1 bg-blue-300 rounded-full mb-4"></div>
+      <p className="text-blue-100 text-sm leading-relaxed max-w-xs">
+        Streamlining educational journeys so institutions can focus 
+        on what truly matters - student learning and growth.
+      </p>
+    </div>
+
+    {/* Image Section */}
+    <div className="flex-1 flex items-end justify-center">
+      <div className="relative">
+        <div className="absolute -inset-4 bg-white/5 rounded-2xl transform rotate-3"></div>
+        <img 
+          src={landing} 
+          alt="School Management Dashboard Preview" 
+          className="relative w-full max-w-sm sm:h-[300px] h-auto rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    </div>
+
+    {/* Feature Highlights */}
+    <div className="mt-1 flex justify-center">
+      <div className="flex items-center space-x-6 text-white/80">
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+          <span className="text-[12px] font-medium">Smart Transport</span>
         </div>
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+          <span className="text-[12px] font-medium">Secure</span>
         </div>
-        <img src={landing} alt="landing" className='absolute top-[120px] left-[917px] w-[360px] h-[470px]' />
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+          <span className="text-[12px] font-medium">Efficient</span>
+        </div>
       </div>
-      </div>
+    </div>
+  </div>
+
+  {/* Bottom Gradient Overlay */}
+  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-blue-600/50 to-transparent"></div>
+</div>
     </div>
   )
 }

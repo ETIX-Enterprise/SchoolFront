@@ -1,46 +1,71 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Login from '../Auth/Login';
-import Typin from './typin';
-import typing from "../assets/lottie/loading.json"
-
+import Spinner from './spinner';
 
 function Landing() {
-  const [isActive , setIsActive] = useState(true);
-  useEffect(()=>{
-    const activeIndex = setInterval(()=> {
-      setIsActive(false)
-    }, 1500)
+  const [isActive, setIsActive] = useState(true);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsActive(false);
+    }, 1500);
 
-    return ()=>{
-      clearInterval(activeIndex)
-    }
-  } ,[])
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-    { isActive ?
-    (
-    <div className='w-full h-screen bg-gradient-to-r  from-[#003DD099] to-[#003DD099] flex p-5 justify-center'>
-      {/* Decoration elements */}
-      <div className="flex">
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[14px] left-[1247px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[37px] left-[1169px]"></div>
-        <div className="bg-[#003DD02E] w-[39px] h-[34px] absolute top-[82px] left-[1156px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[82px] left-[1207px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[48px] left-[1213px]"></div>
-      </div>
-      <div className="flex justify-center items-center mt-10 sm:h-[350px]">
-        <div className="">
-         <p className='text-white text-center  text-[20px] font-bold'>Vuduka School Management</p>
-         <p className='text-blue-100 text-center mt-1  text-[15px]  font-medium  '>We handle journeis that you can focus on studies </p>
-         <div className="p-5 ml-10 mt-5">
-          <Typin data={typing} width={200} height={200}  />
-         </div>
-         </div>
-         </div>
-    </div>)
-    : <Login />
-    }
-  </>)
+      {isActive ? (
+        <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 flex items-center justify-center p-6">
+          {/* Main Content Container */}
+          <div className="text-center max-w-md mx-auto">
+            {/* Logo/Title Section */}
+            <div className="mb-8">
+              <h1 className="text-4xl font-bold text-white mb-3">
+                Vuduka
+              </h1>
+              <div className="w-20 h-1 bg-blue-300 mx-auto mb-4 rounded-full"></div>
+              <p className="text-xl font-semibold text-white mb-2">
+                School Management
+              </p>
+              <p className="text-blue-100 text-sm leading-relaxed">
+                Streamlining educational journeys so you can focus on what matters most
+              </p>
+            </div>
+
+            {/* Loading Section */}
+            <div className="flex flex-col items-center justify-center space-y-4">
+              <div className="flex items-center justify-center space-x-3">
+                <Spinner />
+                <span className="text-white font-medium text-sm">Initializing System</span>
+              </div>
+      
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute top-10 right-10 opacity-20">
+              <div className="w-8 h-8 border-2 border-white rounded-lg transform rotate-12"></div>
+            </div>
+            <div className="absolute bottom-16 left-10 opacity-20">
+              <div className="w-6 h-6 border-2 border-white rounded-full"></div>
+            </div>
+            <div className="absolute top-20 left-20 opacity-15">
+              <div className="w-12 h-12 border-2 border-white rounded-lg transform -rotate-6"></div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="absolute bottom-6 left-0 right-0 text-center">
+            <p className="text-blue-200 text-xs font-light">
+              Secure • Reliable • Efficient
+            </p>
+          </div>
+        </div>
+      ) : (
+        <Login />)
+      }
+    </>
+  );
 }
 
-export default Landing
+export default Landing;

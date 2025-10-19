@@ -139,28 +139,68 @@ function Login() {
         </div>
       </div>
       {/* aside description */}
-      <div className="w-1/2 sm:block hidden h-full p-5 bg-[#003DD099] ">
-            <div className="flex">
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[14px] left-[1247px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[37px] left-[1169px]"></div>
-        <div className="bg-[#003DD02E] w-[39px] h-[34px] absolute top-[82px] left-[1156px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[82px] left-[1207px]"></div>
-        <div className="bg-[#003DD02E] w-[26px] h-[23px] absolute top-[48px] left-[1213px]"></div>
+<div className="w-1/2 sm:block hidden h-full p-8 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden">
+  {/* Modern Decorative Elements */}
+  <div className="absolute inset-0">
+    <div className="absolute top-8 right-12 w-6 h-6 border-2 border-white/20 rounded-lg transform rotate-45"></div>
+    <div className="absolute top-16 right-24 w-4 h-4 border border-white/15 rounded-full"></div>
+    <div className="absolute bottom-32 left-10 w-8 h-8 border-2 border-white/20 rounded-lg transform -rotate-12"></div>
+    <div className="absolute bottom-20 right-16 w-3 h-3 bg-white/10 rounded-full"></div>
+    <div className="absolute top-1/4 left-1/4 w-12 h-12 border-2 border-white/10 rounded-full"></div>
+  </div>
+
+  {/* Content Container */}
+  <div className="relative z-10 h-full flex flex-col">
+    {/* Header Section */}
+    <div className="text-left mb-12">
+      <div className="flex items-center space-x-3 mb-4">
+        <div className="w-3 h-8 bg-blue-300 rounded-full"></div>
+        <h1 className="text-2xl font-bold text-white">Vuduka</h1>
       </div>
-      <div className="">
-        <div className="p-5 flex justify-center">
-          <div className="">
-          <h1 className='text-white text-[16px]  font-bold'>Vuduka School Management</h1>
-          <p className='font-normal text-[14px] text-white'>
-            We handle the journey so schools can focus on learning.
-            <br/>
-            Smart transport
-          </p>
+      <p className="text-white text-lg font-semibold mb-2">
+        School Management System
+      </p>
+      <div className="w-12 h-1 bg-blue-300 rounded-full mb-4"></div>
+      <p className="text-blue-100 text-sm leading-relaxed max-w-xs">
+        Streamlining educational journeys so institutions can focus 
+        on what truly matters - student learning and growth.
+      </p>
+    </div>
+
+    {/* Image Section */}
+    <div className="flex-1 flex items-end justify-center">
+      <div className="relative">
+        <div className="absolute -inset-4 bg-white/5 rounded-2xl transform rotate-3"></div>
+        <img 
+          src={landing} 
+          alt="School Management Dashboard Preview" 
+          className="relative w-full max-w-sm sm:h-[300px] h-auto rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+    </div>
+
+    {/* Feature Highlights */}
+    <div className="mt-1 flex justify-center">
+      <div className="flex items-center space-x-6 text-white/80">
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+          <span className="text-[12px] font-medium">Smart Transport</span>
         </div>
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+          <span className="text-[12px] font-medium">Secure</span>
         </div>
-        <img src={landing} alt="landing" className='absolute top-[120px] left-[917px] w-[360px] h-[470px]' />
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-blue-300 rounded-full"></div>
+          <span className="text-[12px]  font-medium">Efficient</span>
+        </div>
       </div>
-      </div>
+    </div>
+  </div>
+
+  {/* Bottom Gradient Overlay */}
+  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-blue-600/50 to-transparent"></div>
+</div>
     </div>
   )
 }
