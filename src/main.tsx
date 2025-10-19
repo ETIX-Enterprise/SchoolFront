@@ -6,6 +6,8 @@ import { Route , RouterProvider , createBrowserRouter , createRoutesFromElements
 import Landing from './components/Landing.tsx'
 import LayOut from './LayOut.tsx'
 import Signup from './Auth/Signup.tsx'
+import ForgotPassword from './Auth/ForgotPassword.tsx'
+import VerifyCode from './Auth/VerifyCode.tsx'
 
 
 
@@ -14,6 +16,8 @@ const route = createBrowserRouter(
   <>
     <Route path='' element={<Landing />} />
     <Route path='/Signup' element={<Signup />} />
+    <Route path='/Forgot-password' element={<ForgotPassword />} />
+    <Route path='/Verification' element={<VerifyCode />} />
     <Route path='/Dashboard' element={<LayOut />}>
     <Route  path='' element={<App />} />
     </Route>

@@ -7,7 +7,6 @@ import { GrGoogle } from 'react-icons/gr'
 import landing from '/images/landing.png'
 import { useNavigate } from 'react-router-dom'
 
-
 interface UserLoginInfo {
     email : string ,
     password : string
@@ -19,7 +18,7 @@ interface User extends UserLoginInfo {
 
 
 
-function Login() {
+function VerifyCode() {
    
    const [email , setEmail] = useState<string>("")
    const [password , setPassowrd] = useState<string>("")
@@ -50,22 +49,24 @@ function Login() {
 
   return (
     <div className='w-full sm:flex h-screen'>
-      {/* login form  */}
-      <div className="sm:w-1/2 w-full flex-1 space-y-2 h-full py-5 px-10">
+      {/*  form  */}
+      <div className="sm:w-1/2 w-full flex-1 space-y-5 h-full py-5 px-10">
              <header className='p-2'>
             <span className='flex'>
                 <img src={logo} className='w-7 mr-1 h-7' />
             <h2 className='text-[#003DD0] font-bold  mt-1 text-[13px] font-montserrat'>VUDUKA</h2>
        </span>
        <div className="flex-1 space-y-1">
-        <h1 className='text-[#000000] text-[30px] font-normal font-Quicksand'>Login</h1>
-        <p className='text-[16px] text-[#2F2B3DB2] '>Login to access your Golobe account</p>
+        <h1 className='text-[#000000] text-[30px] font-medium Quicksand'>Verify code</h1>
+        <p className='text-[16px] text-[#2F2B3DB2] '>
+            An authentication code has been sent to your email.
+        </p>
        </div>
         </header>
         <div className="mt-7">
           <form action="" onSubmit={handleSubmit} method="post">
 
-            {/** email input */}
+            {/** codeinput */}
            <div className="flex-1 space-y-5">
                 <div className="relative w-full max-w-md">
       <input
@@ -81,54 +82,19 @@ function Login() {
                    peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
                    peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-900"
       >
-       Email
+       Enter code
       </label>
-    </div>
-
-    {/** password input */}
-
-                    <div className="relative w-full max-w-md">
-      <input
-        type={isPasswordShown ? "text" : "password"}
-        value={password}
-        onChange={(e)=> setPassowrd(e.target.value)}
-        className="peer sm:w-[512px] sm:h-[52px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
-        placeholder=" "
-      />
-      <label
-        htmlFor="password"
-        className="absolute   w-28 h-5   text-gray-500 text-[13px] top-2 left-4 bg-white px-1 transition-all duration-200
-                   peer-placeholder-shown:top-[-10px] peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
-                   peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-900"
-      >
-      <p className='w-32'>Password</p> 
-      </label>
-            <span onClick={()=> setIsPasswordShown(prev => !prev)} className=" transition-all duration-700 cursor-pointer p-2 hover:bg-gray-200 rounded-full sm:absolute left-[450px] top-[9px]">
-        {isPasswordShown ? <BsEye  className='text-black w-4 h-4'/> : 
-        <BsEyeSlash  className='text-black w-4 h-4'/>}
-      </span>
-
-    </div>
-    <div className="flex justify-between max-w-[512px]">
-      <div className="flex space-x-2">
-        <input type="checkbox"  name='Remember me' onChange={()=> setRememberMe(true)} className='w-[20px] h-[20px] transition-all duration-700 rounded-[5px] cursor-pointer appearance-none  border border-gray-400 checked:bg-blue-700 checked:border-2 checked:border-blue-700 ' id="" />
-        <p className='text-[14px] text-[#000000] font-medium'>Remember me</p>
-      </div>
-      <div className="cursor-pointer hover:bg-gray-100  transition-all duration-500 rounded">
-        <p onClick={()=> navigate("/Forgot-password",{viewTransition:true})} className='text-[14px] text-[#FF8682] font-medium'>Forgot Password</p>
-      </div>
     </div>
     {/* submission button*/ }
-    <div className="flex-1  space-y-3">
+    <div className="flex-1   space-y-5">
+        <p className='font-medium  text-[14px] text-black'>Didn’t receive a code? <span className='text-[#FF8682] cursor-pointer'>Resend</span></p>
        <button className='bg-[#699BFE] cursor-pointer text-[14px] font-semibold text-white hover:bg-[#528bfe] hover:scale-105 transition-all duration-700 sm:w-[512px] w-full h-[48px] rounded-[4px]'>
-        Login
+        Submit
        </button>
-       <p className='font-medium text-center text-[14px] text-black'>
-        Don’t have an account? <span onClick={()=> navigate("/Signup" ,{viewTransition: true})} className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Sign up</span>
-       </p>
     </div>
+
     {/** social logins */}
-    <div className="flex justify-between max-w-[512px]">
+    <div className="flex mt-32  justify-between max-w-[512px]">
     {socialLogins.map((item)=>(
       <div className="w-[160px] h-[56px] rounded-[4px] border border-[#699BFE] hover:bg-[#699BFE] hover:scale-105 transition-all duration-700 cursor-pointer flex items-center justify-center p-2 " key={item.id}>
       {item.icon}
@@ -206,4 +172,4 @@ function Login() {
   )
 }
 
-export default Login
+export default VerifyCode
