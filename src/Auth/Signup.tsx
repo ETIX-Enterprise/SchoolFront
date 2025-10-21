@@ -190,7 +190,7 @@ function Signup() {
         Sign up
        </button>
        <p className='font-medium text-center text-[14px] text-black'>
-        Already have an account? <span onClick={()=> navigate("/" ,{viewTransition:true})} className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Login</span>
+        Already have an account? <span onClick={()=> navigate("/Login" ,{viewTransition:true})} className='text-[#FF8682] cursor-pointer hover:bg-[#FF8682]/10 rounded transition-colors duration-500'>Login</span>
        </p>
     </div>
     {/** social logins */}

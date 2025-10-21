@@ -9,6 +9,8 @@ import Signup from './Auth/Signup.tsx'
 import ForgotPassword from './Auth/ForgotPassword.tsx'
 import VerifyCode from './Auth/VerifyCode.tsx'
 import SetPassword from './Auth/SetPassword.tsx'
+import Login from './Auth/Login.tsx'
+import Home from './Tabs/Home.tsx'
 
 
 
@@ -16,12 +18,13 @@ const route = createBrowserRouter(
   createRoutesFromElements(
   <>
     <Route path='' element={<Landing />} />
+    <Route path='/Login' element={<Login />} />
     <Route path='/Signup' element={<Signup />} />
     <Route path='/Forgot-password' element={<ForgotPassword />} />
     <Route path='/Verification' element={<VerifyCode />} />
     <Route path='/Password-reset' element={<SetPassword />}/>
     <Route path='/Dashboard' element={<LayOut />}>
-    <Route  path='' element={<App />} />
+    <Route  path='' element={<Home />} />
     </Route>
     </>
 

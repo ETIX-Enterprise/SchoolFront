@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Login from '../Auth/Login';
 import Spinner from './spinner';
+import { useNavigate } from 'react-router-dom';
 
 function Landing() {
-  const [isActive, setIsActive] = useState(true);
+  const navigate = useNavigate()
   
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsActive(false);
+      navigate("/Login");
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -15,7 +15,6 @@ function Landing() {
 
   return (
     <>
-      {isActive ? (
         <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 flex items-center justify-center p-6">
           {/* Main Content Container */}
           <div className="text-center max-w-md mx-auto">
@@ -61,9 +60,6 @@ function Landing() {
             </p>
           </div>
         </div>
-      ) : (
-        <Login />)
-      }
     </>
   );
 }

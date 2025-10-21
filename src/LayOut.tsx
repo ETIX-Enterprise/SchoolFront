@@ -1,4 +1,4 @@
-import  { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {  BiArrowFromLeft, BiMenu, BiUser} from 'react-icons/bi'
 import logo from "/Icona/logo.png"
 import { NavLink } from 'react-router-dom'
@@ -13,6 +13,7 @@ import tracking from '/Icona/tracking.png'
 import notifications from '/Icona/notifications.png'
 import Header from './components/header' 
 import UseIsSmallScreen from './Hooks/UseIsSmallScreen'
+import { Outlet } from 'react-router-dom'
 
 function LayOut() {
   const isSmallScreen = UseIsSmallScreen()
@@ -46,7 +47,8 @@ function LayOut() {
     }
   } , [isNavOpen])
   return (
-    <div className='w-full h-screen'>
+    /* --- MINIMAL CHANGE: make top-level a flex row so sidebar + main sit side-by-side --- */
+    <div className='w-full h-screen flex'>
       {isNavOpen ?
      <aside className='w-[243px] p-5 overflow-auto sm:h-screen h-[832px] bg-[#0000000A]'>
         <header className='p-2 w-full flex justify-between'>
@@ -87,9 +89,9 @@ function LayOut() {
   {navigations2.map((nav)=> (
 
     <NavLink key={nav.id} to={nav.path} className={({isActive})=> `
-    block w-[180px] h-[32px] rounded-[6px] text-[13px] flex  p-2 font-normal transition ${isActive} ? 
+    block w-[180px] h-[32px] rounded-[6px] text-[13px] flex  p-2 font-normal transition ${isActive ? 
     'bg-[#003DD0] hover:bg-blue-800  text-white' 
-    : ' text-[#2F2B3DB2]  hover:bg-gray-200 ' `}>
+    : ' text-[#2F2B3DB2]  hover:bg-gray-200 ' }`}>
   <span className='mr-2 text-[#2F2B3DB2]/90 '> 
   {nav.icon}
   </span>    
@@ -128,7 +130,13 @@ function LayOut() {
         </aside>
        }
 
-<Header  isNavOpen={isNavOpen}/>
+       {/* --- MINIMAL CHANGE: put Header and Outlet into a main column so Outlet becomes the main content --- */}
+       <main className="flex-1 flex flex-col">
+         <Header  isNavOpen={isNavOpen}/>
+         <div className="flex-1 pt-10 mt-10 h-full overflow-auto">
+           <Outlet />
+         </div>
+       </main>
     </div>
     
   )
