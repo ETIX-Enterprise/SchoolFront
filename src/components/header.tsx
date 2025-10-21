@@ -24,7 +24,7 @@ useEffect(()=>{
     
   return (
     <>
-    <header className={`fixed ${isNavOpen ? "left-[243px]" : "left-[60px]"}  top-[15.98px] w-full h-[55.030616760253906px] p-3 border-b border-[#D0D0D0]`}>
+    <header className={`fixed ${isNavOpen ? "left-[243px]" : "left-[60px]"}  top-[15.98px] w-full h-[44.030616760253906px] p-3 border-b border-[#D0D0D0]`}>
       {/* Search bar*/}
         <div className={`flex justify-between  ${isNavOpen  == false ? "w-[1170px]" : "sm:max-w-[1000px]"}`}>
         <div className="flex">

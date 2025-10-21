@@ -133,7 +133,7 @@ function LayOut() {
        {/* --- MINIMAL CHANGE: put Header and Outlet into a main column so Outlet becomes the main content --- */}
        <main className="flex-1 flex flex-col">
          <Header  isNavOpen={isNavOpen}/>
-         <div className="flex-1 pt-10 mt-10 h-full overflow-auto">
+         <div className="flex-1 pt-10 mt-5 h-full overflow-auto">
            <Outlet />
          </div>
        </main>
