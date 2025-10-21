@@ -3,9 +3,10 @@ import logo from "/Icona/logo.png"
 import axios from 'axios'
 import { BsApple, BsEye , BsEyeSlash } from 'react-icons/bs'
 import { FaFacebook } from 'react-icons/fa'
-import Google from "/Icona/google.png"
 import landing from '/images/landing.png'
 import { useNavigate } from 'react-router-dom'
+import Google from "/Icona/google.png"
+
 
 interface UserLoginInfo {
     email : string ,
@@ -16,18 +17,21 @@ interface User extends UserLoginInfo {
 }
 
 
-
-
-function VerifyCode() {
+function SetPassword() {
    
    const [email , setEmail] = useState<string>("")
+   const [password , setPassowrd] = useState<string>("")
+   const [rememberMe , setRememberMe] = useState<boolean>(false)
+
+   //track the password
+   const [isPasswordShown , setIsPasswordShown] = useState<boolean>(false)
    //navigate
    const navigate  = useNavigate()
 
    //social logins
    const socialLogins = [
     {"id":1 , "name":"facebook" , "icon":<FaFacebook className='w-5 h-5 text-blue-600' />},
-    {"id":2  , "name" : "google" , "icon":<img src={Google}  className='w-5 h-5' />},
+    {"id":2  , "name" : "google" , "icon":<img src={Google} className="w-5 h-5" />},
     {"id":3 , "name":"apple" , "icon":<BsApple  className='w-5 h-5 text-black'/>}
    ]
   
@@ -45,57 +49,76 @@ function VerifyCode() {
 
   return (
     <div className='w-full sm:flex h-screen'>
-      {/*  form  */}
-      <div className="sm:w-1/2 w-full flex-1 space-y-5 h-full py-5 px-10">
+      {/* reset form  */}
+      <div className="sm:w-1/2 w-full flex-1 space-y-2 h-full py-5 px-10">
              <header className='p-2'>
             <span className='flex'>
                 <img src={logo} className='w-7 mr-1 h-7' />
             <h2 className='text-[#003DD0] font-bold  mt-1 text-[13px] font-montserrat'>VUDUKA</h2>
        </span>
        <div className="flex-1 space-y-1">
-        <h1 className='text-[#000000] text-[30px] font-medium '>Verify code</h1>
-        <p className='text-[16px] text-[#2F2B3DB2] '>
-            An authentication code has been sent to your email.
-        </p>
+        <h1 className='text-[#000000] text-[30px] font-medium font-Quicksand'>Set a password</h1>
+        <p className='text-[16px] text-[#2F2B3DB2] '>Reset your password to continue.</p>
        </div>
         </header>
         <div className="mt-7">
           <form action="" onSubmit={handleSubmit} method="post">
 
-            {/** codeinput */}
+          
            <div className="flex-1 space-y-5">
-                <div className="relative w-full max-w-md">
+    {/** password input */}
+
+      <div className="relative w-full max-w-md">
       <input
-        type="text"
-        value={email}
-        onChange={(e)=> setEmail(e.target.value)}
+        type={isPasswordShown ? "text" : "password"}
+        value={password}
+        onChange={(e)=> setPassowrd(e.target.value)}
         className="peer sm:w-[512px] sm:h-[52px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
         placeholder=" "
       />
       <label
-        htmlFor="email"
-        className="absolute text-gray-600 text-sm top-2 left-4 bg-white px-1 transition-all duration-200
-                   peer-placeholder-shown:top-[-10px]  peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
+        htmlFor="password"
+        className="absolute   w-18 h-5   text-gray-500 text-[13px] top-2 left-4 bg-white px-1 transition-all duration-200
+                   peer-placeholder-shown:top-[-10px] peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
                    peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-900"
       >
-       Enter code
+      <p className='w-32'>Password</p> 
       </label>
-    </div>
-    {/* submission button*/ }
-    <div className="flex-1   space-y-5">
-        <p className='font-medium  text-[14px] text-black'>Didn’t receive a code? <span className='text-[#FF8682] cursor-pointer'>Resend</span></p>
-       <button className='bg-[#699BFE] cursor-pointer text-[14px] font-semibold text-white hover:bg-[#528bfe] hover:scale-105 transition-all duration-700 sm:w-[512px] w-full h-[48px] rounded-[4px]'>
-        Submit
-       </button>
-    </div>
+            <span onClick={()=> setIsPasswordShown(prev => !prev)} className=" transition-all duration-700 cursor-pointer p-2 hover:bg-gray-200 rounded-full sm:absolute left-[450px] top-[9px]">
+        {isPasswordShown ? <BsEye  className='text-black w-4 h-4'/> : 
+        <BsEyeSlash  className='text-black w-4 h-4'/>}
+      </span>
 
-    {/** social logins */}
-    <div className="flex mt-32  justify-between max-w-[512px]">
-    {socialLogins.map((item)=>(
-      <div className="w-[160px] h-[56px] rounded-[4px] border border-[#699BFE] hover:bg-[#699BFE] hover:scale-105 transition-all duration-700 cursor-pointer flex items-center justify-center p-2 " key={item.id}>
-      {item.icon}
-      </div>
-    ))}
+    </div>
+    {/** confirm password input */}
+
+      <div className="relative w-full max-w-md">
+      <input
+        type={isPasswordShown ? "text" : "password"}
+        value={password}
+        onChange={(e)=> setPassowrd(e.target.value)}
+        className="peer sm:w-[512px] sm:h-[52px] w-full border border-gray-600 text-zinc-600 text-[14px] font-medium rounded-md p-4 pt-6 focus:outline-none focus:ring-1 focus:ring-gray-500"
+        placeholder=" "
+      />
+      <label
+        htmlFor="password"
+        className="absolute   w-32 h-5   text-gray-500 text-[13px] top-2 left-4 bg-white px-1 transition-all duration-200
+                   peer-placeholder-shown:top-[-10px] peer-placeholder-shown:text-[15px] peer-placeholder-shown:text-zinc-400
+                   peer-focus:top-[-10px] peer-focus:text-sm peer-focus:text-gray-900"
+      >
+      <p className='w-32'>Retype password</p> 
+      </label>
+            <span onClick={()=> setIsPasswordShown(prev => !prev)} className=" transition-all duration-700 cursor-pointer p-2 hover:bg-gray-200 rounded-full sm:absolute left-[450px] top-[9px]">
+        {isPasswordShown ? <BsEye  className='text-black w-4 h-4'/> : 
+        <BsEyeSlash  className='text-black w-4 h-4'/>}
+      </span>
+
+    </div>  
+    {/* submission button*/ }
+    <div className="flex-1 mt-20 space-y-3">
+       <button className='bg-[#699BFE] cursor-pointer text-[14px] font-semibold text-white hover:bg-[#528bfe] hover:scale-105 transition-all duration-700 sm:w-[512px] w-full h-[48px] rounded-[4px]'>
+        Reset
+       </button>
     </div>
            </div>
           </form>
@@ -103,7 +126,7 @@ function VerifyCode() {
       </div>
       {/* aside description */}
 <div className="w-1/2 sm:block hidden h-full p-8 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden">
-  {/* Modern Decorative Elements */}
+  {/* Modern Decorative Elements */}                                                                                                 
   <div className="absolute inset-0">
     <div className="absolute top-8 right-12 w-6 h-6 border-2 border-white/20 rounded-lg transform rotate-45"></div>
     <div className="absolute top-16 right-24 w-4 h-4 border border-white/15 rounded-full"></div>
@@ -141,7 +164,6 @@ function VerifyCode() {
         />
       </div>
     </div>
-
     {/* Feature Highlights */}
     <div className="mt-1 flex justify-center">
       <div className="flex items-center space-x-6 text-white/80">
@@ -168,4 +190,4 @@ function VerifyCode() {
   )
 }
 
-export default VerifyCode
+export default SetPassword

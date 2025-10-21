@@ -3,7 +3,7 @@ import logo from "/Icona/logo.png"
 import axios from 'axios'
 import { BsApple, BsEye , BsEyeSlash } from 'react-icons/bs'
 import { FaFacebook } from 'react-icons/fa'
-import { GrGoogle } from 'react-icons/gr'
+import Google from "/Icona/google.png"
 import landing from '/images/landing.png'
 import { useNavigate} from 'react-router-dom'
 
@@ -23,7 +23,7 @@ function Signup() {
    //social logins
    const socialLogins = [
     {"id":1 , "name":"facebook" , "icon":<FaFacebook className='w-5 h-5 text-blue-600' />},
-    {"id":2  , "name" : "google" , "icon":<GrGoogle className='w-5 h-5 text-red-500' />},
+    {"id":2  , "name" : "google" , "icon":<img  src={Google}  className='w-5 h-5'/>},
     {"id":3 , "name":"apple" , "icon":<BsApple  className='w-5 h-5 text-black'/>}
    ]
 
@@ -56,8 +56,10 @@ function Signup() {
             <h2 className='text-[#003DD0] font-bold  mt-[5px] text-[13px] font-montserrat'>VUDUKA</h2>
        </span>
        <div className="flex-1 space-y-1">
-        <h1 className='text-[#000000] text-[30px] font-normal'>Sign up</h1>
-        <p className='text-[16px] text-[#2F2B3DB2] '>Login to access your Golobe account</p>
+        <h1 className='text-[#000000] text-[30px] font-medium'>Sign up</h1>
+        <p className='text-[16px] text-[#2F2B3DB2] '>
+          Let’s get you all st up so you can access your personal account.
+        </p>
        </div>
         </header>
         <div className="mt-7 ">
