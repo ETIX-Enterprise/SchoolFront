@@ -3,8 +3,10 @@ import filter from "/Icona/filter.png"
 import upload from "/Icona/upload.png"
 import vector from "/Icona/Vector.png"
 import upVector from "/Icona/upArrow.png"
-import LineCharts from '../components/Charts'
+import { LineCharts } from '../components/Charts'
 import Dots from "/Icona/dots.png"
+import arrowDown from "/Icona/arrowDown.png"
+import ExampleUsage from '../components/PieComponent'
 type cardData = [
   {id:number , name:string ,subTite:string , value:number , comparision : number},
   {id:number , name:string ,subTite:string , value:number , comparision : number},
@@ -68,11 +70,11 @@ const data = [
      <header className='w-full px-5 border-b border-[#D0D0D0] py-2 flex justify-between'>
         <h1 className='text-[24px] text-black font-semibold '>Overview</h1>
         <div className="flex w-[200px] justify-around">
-            <button className="bg-[#D9D9D9] p-1 cursor-pointer hover:bg-[#c6c4c4] hover:scale-105 transition-all duration-700  text-[14px] text-[#2F2B3DB2] font-normal w-[84px] flex justify-center items-center h-[32px] rounded-[8px]">
+            <button className="bg-[#D9D9D9]/50 p-1 cursor-pointer hover:bg-[#c6c4c4] hover:scale-105 transition-all duration-700  text-[14px] text-[#2F2B3DB2] font-normal w-[84px] flex justify-center items-center h-[32px] rounded-[8px]">
             <img src={filter} className='w-3 h-3' alt="" />
              Filter
             </button>
-            <button className="bg-[#D9D9D9] cursor-pointer p-1 text-[14px] hover:bg-[#c6c4c4] hover:scale-105 transition-all duration-700 text-[#2F2B3DB2] font-normal justify-center items-center w-[84px] flex h-[32px] rounded-[8px]">
+            <button className="bg-[#D9D9D9]/50 cursor-pointer p-1 text-[14px] hover:bg-[#c6c4c4] hover:scale-105 transition-all duration-700 text-[#2F2B3DB2] font-normal justify-center items-center w-[84px] flex h-[32px] rounded-[8px]">
             <img src={upload} className='w-3 h-3' alt="" />
              Upload
             </button>
@@ -119,11 +121,56 @@ const data = [
       <h1 className='text-black font-bold text-[15px]'>Students by Status</h1>
       <p className='text-[#2F2B3DB2] text-[12px]'>Showing data for Students</p>
     </div>
-    <div className="">
+    <div className="mt-3 cursor-pointer">
      <img src={Dots} className='w-[15px] h-[3px]'/>
     </div>
   </div>
+  <div className="flex p-2 justify-between">
+    <div className="">
+      <p className='text-black text-[15px] font-semibold'>Status</p>
+    </div>
+    <div className="flex cursor-pointer">
+      <p className='text-[10px] font-semibold text-black'>Active</p>
+      <img src={arrowDown} className='w-[9px] mt-1 ml-1 h-2'/>
+    </div>
+    
   </div>
+      {/** status bar for indication */}
+      <div className="px-5 mt-2 w-full flex">
+      <div className="h-2 w-[70%] bg-[#4C7080] rounded-l-[2px]"></div>
+      <div className="h-2 w-[20%] bg-[#B01E1E] "></div>
+      <div className="h-2 w-[10%] bg-[#5F8CA0] rounded-r-[2px] "></div>
+    </div>
+
+<div className="px-5 mt-5">
+      <div className="flex justify-between">
+  <p className='flex text-[10px]  font-semibold'>
+    <span className='w-2 h-2 mt-[4px] rounded-[1px] mr-1 bg-[#373F51]'></span>
+    Healthy
+  </p>
+  <p className='text-[10px] font-semibold text-[#696778]'>88%</p>
+  </div>
+        <div className="flex mt-8 justify-between">
+  <p className='flex text-[10px]  font-semibold'>
+    <span className='w-2 h-2 mt-[4px] rounded-[1px] mr-1 bg-[#B01E1E]'></span>
+    Sick 
+  </p>
+  <p className='text-[10px] font-semibold text-[#696778]'>8%</p>
+  </div>
+          <div className="flex mt-8 justify-between">
+  <p className='flex text-[10px]  font-semibold'>
+    <span className='w-2 h-2 mt-[4px] rounded-[1px] mr-1 bg-[#5F8CA0]'></span>
+    Not Arrived 
+  </p>
+  <p className='text-[10px] font-semibold text-[#696778]'>4%</p>
+  </div>
+  </div>
+  </div>
+
+  
+ </div>
+ <div className="">
+  <ExampleUsage />
  </div>
     </div>
   )

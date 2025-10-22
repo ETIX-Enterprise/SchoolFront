@@ -1,9 +1,9 @@
 
 // line chart at first
 
-import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Legend, Line, LineChart, Pie, PieChart, Tooltip, XAxis, YAxis } from "recharts";
 
-export default function LineCharts({data}:{data:[] | any}){
+function LineCharts({data}:{data:[] | any}){
 
     return(
         <>
@@ -22,3 +22,8 @@ export default function LineCharts({data}:{data:[] | any}){
         </>
     )
 }
+
+
+
+
+export { LineCharts}
