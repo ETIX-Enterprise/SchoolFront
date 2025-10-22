@@ -1,9 +1,9 @@
 
 // line chart at first
 
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 
-export default function LineCharts({data}:{data:[]}){
+export default function LineCharts({data}:{data:[] | any}){
 
     return(
         <>
@@ -12,13 +12,12 @@ export default function LineCharts({data}:{data:[]}){
         responsive
         data={data}
         >
-            
-             <XAxis  dataKey={"name"}/>
-             <YAxis width={"auto"}/>
-             <Tooltip />
-             <Legend />
-             <Line type={"monotone"} dataKey={"pv"} stroke="#1C1C1C" activeDot={{r:8}} />
-             <Line type={"monotone"} dataKey={"uv"} stroke="#A8C5DA" />
+        <XAxis tickLine={false} axisLine={false} dataKey={"name"}/>
+        <YAxis tickLine={false} axisLine={false} width={"auto"}/>
+        <Tooltip />
+        <Legend />
+        <Line type={"monotone"} dataKey={"pv"} stroke="#1C1C1C" activeDot={{r:8}} />
+        <Line type={"monotone"} dataKey={"uv"} stroke="#A8C5DA" strokeDasharray="3 3" />
         </LineChart>
         </>
     )
