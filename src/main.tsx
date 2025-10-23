@@ -11,6 +11,7 @@ import VerifyCode from './Auth/VerifyCode.tsx'
 import SetPassword from './Auth/SetPassword.tsx'
 import Login from './Auth/Login.tsx'
 import Home from './Tabs/Home.tsx'
+import Students from './Tabs/Students.tsx'
 
 
 
@@ -24,7 +25,8 @@ const route = createBrowserRouter(
     <Route path='/Verification' element={<VerifyCode />} />
     <Route path='/Password-reset' element={<SetPassword />}/>
     <Route path='/Dashboard' element={<LayOut />}>
-    <Route  path='' element={<Home />} />
+    <Route  path='overview' element={<Home />} />
+    <Route path='students' element={<Students />} />
     </Route>
     </>
 

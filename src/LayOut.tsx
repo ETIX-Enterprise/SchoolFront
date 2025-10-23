@@ -27,10 +27,10 @@ function LayOut() {
   } ,[isSmallScreen])
   
   const navigations = [
-    {'id':1 , 'name':'OVERVIEW' , 'path':'/Dashboard' , 'icon' : <img src={dashboard} className='w-5 h-5' /> },
+    {'id':1 , 'name':'OVERVIEW' , 'path':'/Dashboard/overview' , 'icon' : <img src={dashboard} className='w-5 h-5' /> },
     {'id':2 , 'name':'Students' , 'path':'/Dashboard/students' , 'icon' :  <img src={students} className='w-5 h-5' />},
-    {'id':3 , 'name':'Bookings' , 'path':'/Dashboard/students' ,'icon' : <img src={bookinga} className='w-5 h-5' />} ,
-    {'id':4 , 'name':'Payments' , 'path':'/Dashboard/students' , 'icon' : <img src={payment} className='w-5 h-5' />} ,
+    {'id':3 , 'name':'Bookings' , 'path':'/Dashboard/booking' ,'icon' : <img src={bookinga} className='w-5 h-5' />} ,
+    {'id':4 , 'name':'Payments' , 'path':'/Dashboard/payment' , 'icon' : <img src={payment} className='w-5 h-5' />} ,
     {'id':5 , 'name':'Reports' , 'path': '/Dashboard/reports' , 'icon' : <img src={report }  className='w-5 h-5'/>}
   ]
  const navigations2 = [
