@@ -81,20 +81,22 @@ const data = [
         </div>
      </header>
      {/** overview cards */}
-     <div className="flex px-3 justify-between">
+     <div className="flex px-5 justify-between">
       {OverViewCards.map((card)=>(
        <div key={card.id} className="w-[240px] h-[100px] rounded-sm  space-y-[2px] p-2 border border-[#D0D0D0]">
         <p className='text-[14px] font-normal text-[#2F2B3DB2]'>{card.subTite}</p>
-        <div className="flex justify-around">
+        <div className="flex justify-start">
         <h2 className='font-semibold text-[16px] text-black'>{card.value} {card.name}</h2>
-        <img src={vector} className='w-5 h-5 shadow-xl' />
         </div>
-        <div className="flex  justify-around">
+        <div className="flex  justify-start">
+          <div className="flex  justify-start">
           <div className={`p-1 mt-1 flex rounded-sm ${card.name == "Bookings"  ? "bg-[#003DD02E]" : card.name == "Payments" ? "bg-[#F51E1E2E]" : card.name == "Students" ? "bg-[#00D6272E]" : "bg-[#00D6272E]"}`}>
             <img src={upVector} className='w-2 h-2 mt-[7px]' alt="" />
             <p className='text-[#003DD0] text-[13px] font-normal '>{card.comparision}%</p>
           </div>
-          <p className='text-[12px] mt-2'>compared to last Term</p>
+          
+          <p className='text-[12px] ml-10 mt-2'>compared to last Term</p>
+          </div>
         </div>
        </div>
       ))}
@@ -137,9 +139,9 @@ const data = [
   </div>
       {/** status bar for indication */}
       <div className="px-5 mt-2 w-full flex">
-      <div className="h-2 w-[70%] bg-[#4C7080] rounded-l-[2px]"></div>
-      <div className="h-2 w-[20%] bg-[#B01E1E] "></div>
-      <div className="h-2 w-[10%] bg-[#5F8CA0] rounded-r-[2px] "></div>
+      <div className="h-2 w-[70%] bg-blue-800 rounded-l-[2px]"></div>
+      <div className="h-2 w-[20%] bg-red-600 "></div>
+      <div className="h-2 w-[10%] bg-blue-800 rounded-r-[2px] "></div>
     </div>
 
 <div className="px-5 mt-5">

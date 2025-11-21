@@ -3,8 +3,97 @@ import sortUp from "/Icona/sortU.png"
 import sortDown from "/Icona/sortD.png"
 import { GrAdd } from 'react-icons/gr'
 import { BiSearch } from 'react-icons/bi'
+import StudentTable from '../components/studentTable'
+import { useState } from 'react'
 
 function Students() {
+    const [students, setStudents] = useState([
+    {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+        {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+        {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+        {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+            {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+            {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+            {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+            {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+            {
+      id: 1,
+      name: "UMUKURA Olivier",
+      grade: "Year 3",
+      phone: "+250 788 924 456",
+      city: "Kigali",
+      district: "Kicukiro",
+      status: "Arrived" as const,
+    },
+  ]);
+
+  const handleDelete = (id: number) => {
+    setStudents((prev:any) => prev.filter((s:any) => s.id !== id));
+  };
   return (
     <div className='w-full h-full p-4'>
       {/** import and export buttons */}
@@ -38,7 +127,9 @@ function Students() {
           </div>
         </div>
        </div>
-
+      <div className="p-3 mb-10">
+        <StudentTable data={students} onDelete={handleDelete}  />
+      </div>
     </div>
   )
 }
