@@ -71,7 +71,7 @@ const StudentTable: React.FC<Props> = ({ data, onDelete }) => {
           <tr className=" text-[14px]">
             <th className="py-3 px-4  text-left font-semibold text-gray-700">Student</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">Grade</th>
-            <th className="py-3 px-4 text-left font-semibold text-gray-700">Phone</th>
+            <th className="py-3 px-4 text-left font-semibold text-gray-700">Parent phone</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">City</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">District</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">Status</th>

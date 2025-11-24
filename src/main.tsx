@@ -12,6 +12,7 @@ import SetPassword from './Auth/SetPassword.tsx'
 import Login from './Auth/Login.tsx'
 import Home from './Tabs/Home.tsx'
 import Students from './Tabs/Students.tsx'
+import Bookings from './Tabs/Bookings.tsx'
 
 
 
@@ -27,6 +28,7 @@ const route = createBrowserRouter(
     <Route path='/Dashboard' element={<LayOut />}>
     <Route  path='overview' element={<Home />} />
     <Route path='students' element={<Students />} />
+    <Route path='booking' element={<Bookings />} />
     </Route>
     </>
 
