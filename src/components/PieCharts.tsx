@@ -1,4 +1,3 @@
-// Charts.jsx
 import React from "react";
 import {
   ResponsiveContainer,
@@ -12,8 +11,11 @@ import {
   LabelList,
   AreaChart,
   Area,
-  Line
+  Line,
 } from "recharts";
+
+type SeriesPoint = { x: string; y: number };
+type Series = { name: string; data: SeriesPoint[] };
 
 /* NestedStackedBar
    props: categories, outerData, innerData, height, colors
@@ -23,12 +25,18 @@ export function NestedStackedBar({
   outerData = [],
   innerData = [],
   height = 320,
-  colors = ["#315c66", "#6f98a7"]
+  colors = ["#315c66", "#6f98a7"],
+}: {
+  categories?: string[];
+  outerData?: number[];
+  innerData?: number[];
+  height?: number;
+  colors?: string[];
 }) {
   const data = categories.map((name, i) => ({
     name,
     outer: outerData[i] ?? 0,
-    inner: innerData[i] ?? 0
+    inner: innerData[i] ?? 0,
   }));
 
   return (
@@ -59,9 +67,14 @@ export function CalloutBars({
   data = [],
   height = 300,
   barColor = "#396b78",
-  showCallouts = true
+  showCallouts = true,
+}: {
+  data?: { name: string; value: number }[];
+  height?: number;
+  barColor?: string;
+  showCallouts?: boolean;
 }) {
-  const sorted = [...data].sort((a, b) => b.value - a.value);
+  const sorted = [...(data || [])].sort((a, b) => b.value - a.value);
 
   return (
     <div style={{ width: "100%", height }}>
@@ -92,7 +105,7 @@ export function CalloutBars({
                 padding: "6px 10px",
                 borderRadius: 8,
                 fontWeight: 700,
-                fontSize: 13
+                fontSize: 13,
               }}
             >
               {d.name} — {d.value}
@@ -106,46 +119,73 @@ export function CalloutBars({
 
 /* OverviewLines
    props: series = [{ name, data: [{ x, y }] }], height, maxY
+   This version uses gentle sea-like gradients for fills and smoother lines.
 */
 export function OverviewLines({
   series = [],
   height = 320,
-  maxY = null
+  maxY = null,
+}: {
+  series?: Series[];
+  height?: number;
+  maxY?: number | null;
 }) {
-  const xValues = Array.from(new Set(series.flatMap(s => s.data.map(d => d.x))));
-  const combined = xValues.map(x => {
-    const point = { x };
-    series.forEach(s => {
-      const found = s.data.find(d => d.x === x);
+  const xValues = Array.from(new Set((series || []).flatMap((s) => s.data.map((d) => d.x))));
+  const combined = xValues.map((x) => {
+    const point: any = { x };
+    (series || []).forEach((s) => {
+      const found = s.data.find((d) => d.x === x);
       point[s.name] = found ? found.y : 0;
     });
     return point;
   });
 
-  const palette = ["#315c66", "#6f98a7", "#cfe0e4"];
+  const palette = ["#60a5fa", "#93c5fd", "#bde0fe"]; // sea-like blues
 
   return (
     <div style={{ width: "100%", height }}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={combined} margin={{ top: 12, right: 12, left: 8, bottom: 8 }}>
+          <defs>
+            <linearGradient id="seaGrad0" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#60a5fa" stopOpacity={0.28} />
+              <stop offset="100%" stopColor="#60a5fa" stopOpacity={0.06} />
+            </linearGradient>
+            <linearGradient id="seaGrad1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#93c5fd" stopOpacity={0.26} />
+              <stop offset="100%" stopColor="#93c5fd" stopOpacity={0.04} />
+            </linearGradient>
+            <linearGradient id="seaGrad2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#bde0fe" stopOpacity={0.22} />
+              <stop offset="100%" stopColor="#bde0fe" stopOpacity={0.03} />
+            </linearGradient>
+          </defs>
+
           <CartesianGrid stroke="#eef6f7" strokeDasharray="3 3" />
           <XAxis dataKey="x" tick={{ fill: "#596f72" }} />
           <YAxis tick={{ fill: "#596f72" }} domain={maxY ? [0, maxY] : ["auto", "auto"]} />
           <Tooltip wrapperStyle={{ borderRadius: 8 }} />
           <Legend verticalAlign="top" height={24} />
-          {series.map((s, i) => (
+
+          {(series || []).map((s, i) => (
             <React.Fragment key={s.name}>
               <Area
                 type="monotone"
                 dataKey={s.name}
                 stroke={palette[i % palette.length]}
-                fill={palette[i % palette.length]}
-                fillOpacity={0.12}
+                fill={`url(#seaGrad${i % 3})`}
+                fillOpacity={1}
                 isAnimationActive={false}
                 strokeWidth={2}
                 dot={false}
               />
-              <Line type="monotone" dataKey={s.name} stroke={palette[i % palette.length]} dot={false} strokeWidth={1} />
+              <Line
+                type="monotone"
+                dataKey={s.name}
+                stroke={palette[i % palette.length]}
+                dot={false}
+                strokeWidth={1.2}
+              />
             </React.Fragment>
           ))}
         </AreaChart>
@@ -157,5 +197,6 @@ export function OverviewLines({
 export default {
   NestedStackedBar,
   CalloutBars,
-  OverviewLines
+  OverviewLines,
 };
+

@@ -1,7 +1,7 @@
-// ExampleUsage.jsx
 import React from "react";
 import { NestedStackedBar, CalloutBars, OverviewLines } from "./PieCharts";
-import Dots from "/Icona/fill.png";
+import { BiDotsHorizontal } from "react-icons/bi";
+
 
 const outer = [200, 120, 180, 300];
 const inner = [80, 30, 40, 70];
@@ -40,9 +40,9 @@ export default function ExampleUsage() {
         <div className="flex justify-between items-start mb-4">
           <div>
             <p className="text-[15px] font-bold">Payments Summary</p>
-            <p className="text-[12px] opacity-80 mt-1 text-blue-800">Monthly payments by category</p>
+            <p className="text-[12px] opacity-80 mt-1 text-blue-700">Monthly payments by category</p>
           </div>
-          <img src={Dots} alt="menu" className="w-6 h-6 opacity-80" />
+          <BiDotsHorizontal className="w-10 h-4"/>
         </div>
 
         <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
@@ -61,16 +61,16 @@ export default function ExampleUsage() {
         <div className="flex justify-between items-start mb-4">
           <div>
             <p className="text-[15px] font-bold">Bus Assignments</p>
-            <p className="text-[12px] opacity-80 text-blue-800 mt-1">Active bus load by region</p>
+            <p className="text-[12px] opacity-80 text-blue-700 mt-1">Active bus load by region</p>
           </div>
-          <img src={Dots} alt="menu" className="w-6 h-6 opacity-80" />
+          <BiDotsHorizontal className="w-10 h-4"/>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
           <CalloutBars
             data={busData}
             height={320}
-            barColor="#bfdbfe" /* pale blue bar to contrast */
+            barColor="#60a5fa" /* sea-like pale blue bar to contrast */
             showCallouts={true}
           />
         </div>
@@ -81,9 +81,9 @@ export default function ExampleUsage() {
         <div className="flex justify-between items-start mb-4">
           <div>
             <p className="text-[15px] font-bold">Registered Students</p>
-            <p className="text-[12px] opacity-80 text-blue-800 mt-1">Trend of registrations</p>
+            <p className="text-[12px] opacity-80 text-blue-700 mt-1">Trend of registrations</p>
           </div>
-          <img src={Dots} alt="menu" className="w-6 h-6 opacity-80" />
+         <BiDotsHorizontal className="w-10 h-4"/>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>

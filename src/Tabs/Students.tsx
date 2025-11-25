@@ -115,8 +115,8 @@ function Students() {
           <p className='text-[14px] text-[#696778] font-medium'>Student Registered On MIT</p>
         </div>
         <div className="flex justify-between">
-          <div className="w-[135px] mr-5 h-[45px] text-[#4327F4] bg-[#4F279B0D] rounded-[56px] flex items-center justify-center p-2 cursor-pointer">
-           <GrAdd className='w-2 h-2 mr-1'/>
+          <div className="w-[135px] mr-5 h-[45px] text-white bg-blue-800 shodow-lg hover:bg-blue-700 transition-all duration-500 hover:scale-105 rounded-lg flex items-center justify-center p-2 cursor-pointer">
+           <GrAdd className='w-3 h-3 mr-1'/>
            <p className='text-[14px] font-medium'>
             Add Student
            </p>
@@ -127,7 +127,7 @@ function Students() {
           </div>
         </div>
        </div>
-      <div className="p-3 mb-10">
+      <div className="px-3 mb-10">
         <StudentTable data={students} onDelete={handleDelete}  />
       </div>
     </div>

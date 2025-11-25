@@ -1,7 +1,7 @@
 import { Pencil } from "lucide-react";
 import React from "react";
 import { FaTrash, FaUser } from "react-icons/fa";
-import { FcDeleteRow } from "react-icons/fc";
+import { FcDeleteRow, FcLeft } from "react-icons/fc";
 import { FiDelete } from "react-icons/fi";
 
 type Student = {
@@ -142,7 +142,7 @@ const StudentTable: React.FC<Props> = ({ data, onDelete }) => {
             className={`px-3 py-1 rounded-md transition ${page === 1 ? "bg-gray-100 text-gray-400" : "bg-white text-gray-700 hover:bg-gray-50 shadow-sm"}`}
             aria-label="Previous page"
           >
-            Prev
+            <FcLeft className="w-5 h-5"/>
           </button>
 
           <div className="flex items-center gap-1">

@@ -7,6 +7,7 @@ import { LineCharts } from '../components/Charts'
 import Dots from "/Icona/dots.png"
 import arrowDown from "/Icona/arrowDown.png"
 import ExampleUsage from '../components/PieComponent'
+import { Filter, Upload } from 'lucide-react'
 type cardData = [
   {id:number , name:string ,subTite:string , value:number , comparision : number},
   {id:number , name:string ,subTite:string , value:number , comparision : number},
@@ -70,12 +71,12 @@ const data = [
      <header className='w-full px-5 border-b border-[#D0D0D0] py-2 flex justify-between'>
         <h1 className='text-[24px] text-black font-semibold '>Overview</h1>
         <div className="flex w-[200px] justify-around">
-            <button className="bg-[#D9D9D9]/50 p-1 cursor-pointer hover:bg-[#c6c4c4] hover:scale-105 transition-all duration-700  text-[14px] text-[#2F2B3DB2] font-normal w-[84px] flex justify-center items-center h-[32px] rounded-[8px]">
-            <img src={filter} className='w-3 h-3' alt="" />
+            <button className="bg-blue-800 p-1 cursor-pointer hover:bg-blue-700 hover:scale-105 transition-all duration-700  text-[14px] text-white font-normal w-[87px] flex justify-center items-center h-[35px] rounded-[8px]">
+            <Filter className='w-4 h-4 mr-2'/>
              Filter
             </button>
-            <button className="bg-[#D9D9D9]/50 cursor-pointer p-1 text-[14px] hover:bg-[#c6c4c4] hover:scale-105 transition-all duration-700 text-[#2F2B3DB2] font-normal justify-center items-center w-[84px] flex h-[32px] rounded-[8px]">
-            <img src={upload} className='w-3 h-3' alt="" />
+            <button className="bg-blue-800 p-1 cursor-pointer hover:bg-blue-700 hover:scale-105 transition-all duration-700  text-[14px] text-white font-normal w-[87px] flex justify-center items-center h-[35px] rounded-[8px]">
+            <Upload className='w-4 h-4 mr-2'/>
              Upload
             </button>
         </div>
@@ -83,8 +84,8 @@ const data = [
      {/** overview cards */}
      <div className="flex px-5 justify-between">
       {OverViewCards.map((card)=>(
-       <div key={card.id} className="w-[240px] h-[100px] rounded-sm  space-y-[2px] p-2 border border-[#D0D0D0]">
-        <p className='text-[14px] font-normal text-[#2F2B3DB2]'>{card.subTite}</p>
+       <div key={card.id} className="w-[240px] h-[100px] rounded-sm  space-y-[2px] p-2 border border-gray-200">
+        <p className='text-[14px] font-normal text-gray-700'>{card.subTite}</p>
         <div className="flex justify-start">
         <h2 className='font-semibold text-[16px] text-black'>{card.value} {card.name}</h2>
         </div>
@@ -103,12 +104,12 @@ const data = [
      </div>
  {/* overview charts */}
  <div className=" w-full p-3 h-[289px] flex grid-cols-2 gap-5 ">
-  <div className="w-full flex-1 space-y-3 border border-[#B3B3B3] p-2 h-full rounded-[8px]">
-    <p className='text-[15px] text-black font-bold'> Journey Overview</p>
-    <div className="w-full h-[200px] rounded-[16px] p-2 px-3 bg-[#F7F9FB]">
+  <div className="w-full flex-1 space-y-3 border border-gray-200 p-2 h-full rounded-[8px]">
+    <p className='text-[15px] text-black font-medium'> Journey Overview</p>
+    <div className="w-full h-[200px] rounded-[16px] p-2 px-3 bg-blue-50">
       <div className="flex justify-around">
-        <p className='text-black font-semibold text-[14px]'>Students</p>
-        <p className='text-[#1C1C1C66] font-semibold text-[14px]'>Transport status |</p>
+        <p className='text-black font-medium text-[14px]'>Students</p>
+        <p className='text-[#1C1C1C66] font-medium text-[14px]'>Transport status |</p>
         <p className='text-black font-normal text-[14px] relative top-[-2px]'><span className='text-[16px] relative top-[-3px] font-extrabold'>.</span>This year</p>
         <p className='text-black font-normal text-[14px] relative top-[-2px]'><span className='text-[16px] text-[#A8C5DA] relative top-[-3px] font-extrabold'>.</span>Last year</p>
       </div>
@@ -117,11 +118,11 @@ const data = [
       </div>
     </div>
   </div>
-  <div className="w-1/3 border border-[#B3B3B3] pt-2  rounded-[8px]">
+  <div className="w-1/3 border border-gray-200 pt-2  rounded-[8px]">
   <div className="flex px-5 justify-between">
     <div className="flex-1 space-y-[2px]">
-      <h1 className='text-black font-bold text-[15px]'>Students by Status</h1>
-      <p className='text-[#2F2B3DB2] text-[12px]'>Showing data for Students</p>
+      <h1 className='text-black font-medium text-[15px]'>Students by Status</h1>
+      <p className='text-gray-700 text-[12px]'>Showing data for Students</p>
     </div>
     <div className="mt-3 cursor-pointer">
      <img src={Dots} className='w-[15px] h-[3px]'/>
@@ -139,9 +140,9 @@ const data = [
   </div>
       {/** status bar for indication */}
       <div className="px-5 mt-2 w-full flex">
-      <div className="h-2 w-[70%] bg-blue-800 rounded-l-[2px]"></div>
-      <div className="h-2 w-[20%] bg-red-600 "></div>
-      <div className="h-2 w-[10%] bg-blue-800 rounded-r-[2px] "></div>
+      <div className="h-3 w-[70%] bg-blue-200 rounded-l-[3px]"></div>
+      <div className="h-3 w-[20%] bg-red-200 "></div>
+      <div className="h-3 w-[10%] bg-blue-200 rounded-r-[3px] "></div>
     </div>
 
 <div className="px-5 mt-5">
@@ -161,10 +162,10 @@ const data = [
   </div>
           <div className="flex mt-8 justify-between">
   <p className='flex text-[10px]  font-semibold'>
-    <span className='w-2 h-2 mt-[4px] rounded-[1px] mr-1 bg-[#5F8CA0]'></span>
+    <span className='w-2 h-2 mt-[4px] rounded-[1px] mr-1 bg-blue-800'></span>
     Not Arrived 
   </p>
-  <p className='text-[10px] font-semibold text-[#696778]'>4%</p>
+  <p className='text-[10px] font-semibold text-blue-800'>4%</p>
   </div>
   </div>
   </div>

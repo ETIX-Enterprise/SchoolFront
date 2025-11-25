@@ -34,7 +34,7 @@ function LayOut() {
     {'id':5 , 'name':'Reports' , 'path': '/Dashboard/reports' , 'icon' : <img src={report }  className='w-5 h-5'/>}
   ]
  const navigations2 = [
-  {'id':1  , 'name' : 'Tracking' , 'path':'/tracking' , 'icon':<img src={tracking} className='w-5 h-5' /> },
+  {'id':1  , 'name' : 'Tracking' , 'path':'/Dashboard/tracking' , 'icon':<img src={tracking} className='w-5 h-5' /> },
   {'id':2  , 'name' : 'Notifications' , 'path':'/Notifications' , 'icon':<img src={notifications} className='w-5 h-5' /> },
   {'id':3  , 'name' : 'Support' , 'path':'/Support' , 'icon':<img src={support} className='w-5 h-5' /> },
  ]

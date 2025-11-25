@@ -16,8 +16,8 @@ function LineCharts({data}:{data:[] | any}){
         <YAxis tickLine={false} axisLine={false} width={"auto"}/>
         <Tooltip />
         <Legend />
-        <Line type={"monotone"} dataKey={"pv"} stroke="#1C1C1C" activeDot={{r:8}} />
-        <Line type={"monotone"} dataKey={"uv"} stroke="#A8C5DA" strokeDasharray="3 3" />
+        <Line type={"monotone"} dataKey={"pv"} className="text-blue-700"  activeDot={{r:8}} />
+        <Line type={"monotone"} dataKey={"uv"} className="text-blue-700" strokeDasharray="3 3" />
         </LineChart>
         </>
     )

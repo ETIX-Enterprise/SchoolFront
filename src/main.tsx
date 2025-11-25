@@ -14,6 +14,8 @@ import Home from './Tabs/Home.tsx'
 import Students from './Tabs/Students.tsx'
 import Bookings from './Tabs/Bookings.tsx'
 import Payments from './Tabs/Payments.tsx'
+import ReportsPage from './Tabs/Reports.tsx'
+import Tracking from './Tabs/Tracking.tsx'
 
 
 
@@ -28,10 +30,12 @@ const route = createBrowserRouter(
     <Route path='/Verification' element={<VerifyCode />} />
     <Route path='/Password-reset' element={<SetPassword />}/>
     <Route path='/Dashboard' element={<LayOut />}>
+    <Route path='tracking' element={<Tracking />} />
     <Route  path='overview' element={<Home />} />
     <Route path='students' element={<Students />} />
     <Route path='booking' element={<Bookings />} />
     <Route path='payment' element={<Payments />} />
+    <Route path='reports' element={<ReportsPage />} />
     </Route>
     </>
 

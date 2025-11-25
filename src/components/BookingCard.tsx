@@ -13,7 +13,7 @@ export function BookingCard({ booking, onMarkAsPaid }: BookingCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-100 shadow-sm shadow-gray-50 p-6 h-[200px]   transition-shadow">
+    <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 h-[200px]   transition-shadow">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-start justify-between mb-3">
@@ -51,12 +51,12 @@ export function BookingCard({ booking, onMarkAsPaid }: BookingCardProps) {
 
         <div className="mt-15">
           <div className="flex items-center gap-2">
-            <span className="text-blue-800 mb-1">{booking.amount.toLocaleString()}RFW</span>
+            <span className="text-red-800 mb-1">{booking.amount.toLocaleString()}RFW</span>
           </div>
           {!booking.isPaid && (
             <button
               onClick={() => onMarkAsPaid(booking.id)}
-              className="px-4 py-2 bg-blue-50 cursor-pointer flex text-black font-medium text-[14px] rounded-md hover:bg-red-800 transition-colors duration-500 "
+              className="px-4 py-2 bg-blue-800 cursor-pointer flex text-white  font-medium text-[14px] rounded-md hover:bg-red-700 transition-colors duration-500 "
             >
                 <Wallet className='w-4 mt-[2px] mr-2 h-4'/>
               Pay
