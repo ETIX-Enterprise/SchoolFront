@@ -1,9 +1,10 @@
-import React from 'react'
+import { useState } from 'react';
+import { BookingDashboard } from '../components/BookingDashboard';
 
-function Payments() {
+export default function Payments() {
   return (
-    <div>Payments</div>
-  )
+    <div className="min-h-screen">
+      <BookingDashboard />
+    </div>
+  );
 }
-
-export default Payments

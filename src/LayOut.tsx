@@ -70,9 +70,9 @@ function LayOut() {
   key={nav.id}
   to={nav.path}
   className={({ isActive }) =>
-    `block w-[180px] h-[32px] rounded-[6px] text-[13px] flex  p-2 font-normal transition ${
+    `block w-[180px] h-[37px] rounded-lg text-[13px] flex  p-2 font-normal transition ${
       isActive
-        ? 'bg-[#003DD0] hover:bg-blue-800  text-white'
+        ? 'bg-blue-800 hover:bg-blue-800  text-white'
         : 'text-[#2F2B3DB2] hover:bg-gray-200'
     }`
   }

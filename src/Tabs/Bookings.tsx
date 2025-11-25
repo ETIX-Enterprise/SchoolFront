@@ -1,17 +1,16 @@
 import React from 'react'
 import { BiAddToQueue, BiEnvelope } from 'react-icons/bi'
-import { CgAdd } from 'react-icons/cg'
 import { GiConfirmed } from 'react-icons/gi'
-import { PiNotMemberOfDuotone } from 'react-icons/pi'
+
 
 function Bookings() {
   return (
     <div className='p-3'>
       <div className="flex pb-2 justify-between">
         <div className="">
-<div className="relative shadow-lg">
+<div className="relative flex bg-transparent shadow-lg">
   <select className="w-full bg-white border border-gray-300 text-gray-700 py-2  pl-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500 appearance-none">
-    <option value="option1">View booking</option>
+    <option value="option1">Filter bookings</option>
     <option value="option2">Huye - kigali</option>
     <option value="option3">Huye - Rusizi</option>
   </select>

@@ -1,3 +1,4 @@
+import { Pencil } from "lucide-react";
 import React from "react";
 import { FaTrash, FaUser } from "react-icons/fa";
 import { FcDeleteRow } from "react-icons/fc";
@@ -74,6 +75,7 @@ const StudentTable: React.FC<Props> = ({ data, onDelete }) => {
             <th className="py-3 px-4 text-left font-semibold text-gray-700">Parent phone</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">City</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">District</th>
+            <th className="py-3 px-4 text-left font-semibold text-gray-700">Health</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">Status</th>
             <th className="py-3 px-4 text-left font-semibold text-gray-700">Action</th>
             <th></th>
@@ -97,11 +99,11 @@ const StudentTable: React.FC<Props> = ({ data, onDelete }) => {
               <td className="py-3 px-4">{item.phone}</td>
               <td className="py-3 px-4">{item.city}</td>
               <td className="py-3 px-4">{item.district}</td>
-
+              <td className="py-3 px-4 text-green-700">Healthy</td>
               <td className="py-3 px-4">
                 <span
                   className={`
-                    px-4 py-1 rounded-full text-sm font-medium
+                    px-4 py-2 rounded-full text-sm font-medium
                     ${item.status === "Arrived" ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"}
                   `}
                 >
@@ -112,10 +114,10 @@ const StudentTable: React.FC<Props> = ({ data, onDelete }) => {
               <td className="py-2 px-5 text-right">
                 <button
                   onClick={() => onDelete(item.id)}
-                  className="p-2 text-red-800 text-[13px] bg-red-100 flex rounded-full transition"
+                  className="py-2 w-20 px-2 text-red-800 flex justify-between text-[13px] bg-red-100 rounded-full transition"
                 >
-                <FaTrash  className="w-4 h-4 text-red-500"/>
-                <span className="ml-[1px]">Delete</span>
+                <FaTrash  className="w-4 h-4 text-red-500 cursor-pointer"/>
+                <Pencil className="w-4 h-4 ml-2 text-gray-700 cursor-pointer"/>
                 </button>
               </td>
             </tr>
