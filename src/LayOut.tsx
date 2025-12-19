@@ -14,6 +14,8 @@ import notifications from '/Icona/notifications.png'
 import Header from './components/header' 
 import UseIsSmallScreen from './Hooks/UseIsSmallScreen'
 import { Outlet } from 'react-router-dom'
+import { AppWindow, Bell, BusFront, LayoutGrid, Signal, Ticket, UserCircle, Wallet } from 'lucide-react'
+import { PiStudent } from 'react-icons/pi'
 
 function LayOut() {
   const isSmallScreen = UseIsSmallScreen()
@@ -27,16 +29,16 @@ function LayOut() {
   } ,[isSmallScreen])
   
   const navigations = [
-    {'id':1 , 'name':'OVERVIEW' , 'path':'/Dashboard/overview' , 'icon' : <img src={dashboard} className='w-5 h-5' /> },
-    {'id':2 , 'name':'Students' , 'path':'/Dashboard/students' , 'icon' :  <img src={students} className='w-5 h-5' />},
-    {'id':3 , 'name':'Bookings' , 'path':'/Dashboard/booking' ,'icon' : <img src={bookinga} className='w-5 h-5' />} ,
-    {'id':4 , 'name':'Payments' , 'path':'/Dashboard/payment' , 'icon' : <img src={payment} className='w-5 h-5' />} ,
-    {'id':5 , 'name':'Reports' , 'path': '/Dashboard/reports' , 'icon' : <img src={report }  className='w-5 h-5'/>}
+    {'id':1 , 'name':'OVERVIEW' , 'path':'/Dashboard/overview' , 'icon' : <AppWindow className='w-5 h-5' /> },
+    {'id':2 , 'name':'Students' , 'path':'/Dashboard/students' , 'icon' :  <PiStudent className='w-5 h-5' />},
+    {'id':3 , 'name':'Bookings' , 'path':'/Dashboard/booking' ,'icon' : <Ticket className='w-5 h-5' />} ,
+    {'id':4 , 'name':'Payments' , 'path':'/Dashboard/payment' , 'icon' : <Wallet className='w-5 h-5' />} ,
+    {'id':5 , 'name':'Reports' , 'path': '/Dashboard/reports' , 'icon' : <Signal className='w-5 h-5'/>}
   ]
  const navigations2 = [
-  {'id':1  , 'name' : 'Tracking' , 'path':'/Dashboard/tracking' , 'icon':<img src={tracking} className='w-5 h-5' /> },
-  {'id':2  , 'name' : 'Notifications' , 'path':'/Notifications' , 'icon':<img src={notifications} className='w-5 h-5' /> },
-  {'id':3  , 'name' : 'Support' , 'path':'/Support' , 'icon':<img src={support} className='w-5 h-5' /> },
+  {'id':1  , 'name' : 'Tracking' , 'path':'/Dashboard/tracking' , 'icon':<BusFront className='w-5 h-5' /> },
+  {'id':2  , 'name' : 'Notifications' , 'path':'/Dashboard/notifications' , 'icon':<Bell className='w-5 h-5' /> },
+  {'id':3  , 'name' : 'Support' , 'path':'/Support' , 'icon':<UserCircle className='w-5 h-5' /> },
  ]
   const [ isNavOpen , setIsNavOpen] = useState(true)
   const handleNav = useCallback( ()=>{
@@ -57,12 +59,12 @@ function LayOut() {
             <h2 className='text-blue-700 font-bold  mt-1 text-[17px]'>VUDUKA</h2>
             </span>
             <span onClick={handleNav} className='cursor-pointer w-8 h-8 rounded-xl items-center text-center flex justify-center hover:bg-gray-200'>
-            <BiMenu  className='w-5 h-5 text-[#B3B3B3]' />
+            <BiMenu  className='w-5 h-5 text-black' />
             </span>
         </header>
        
  <div className='flex-1 space-y-2 p-3'>
-  <h1 className='text-[14px] font-light text-[#2F2B3DB2]'>Main Menu</h1>
+  <h1 className='text-[14px] font-light text-black'>Main Menu</h1>
   <div className='flex-1 mt-5 space-y-2'>
 {navigations.map((nav)=>(
   
@@ -73,11 +75,11 @@ function LayOut() {
     `block w-[180px] h-[37px] rounded-lg text-[13px] flex  p-2 font-normal transition ${
       isActive
         ? 'bg-blue-800 hover:bg-blue-800  text-white'
-        : 'text-[#2F2B3DB2] hover:bg-gray-200'
+        : 'text-black hover:bg-gray-200'
     }`
   }
 >
-  <span className='mr-2 text-[#2F2B3DB2]/90 '> 
+  <span className='mr-2 '> 
  {nav.icon}
   </span>    
   {nav.name}
@@ -91,8 +93,8 @@ function LayOut() {
     <NavLink key={nav.id} to={nav.path} className={({isActive})=> `
     block w-[180px] h-[32px] rounded-[6px] text-[13px] flex  p-2 font-normal transition ${isActive ? 
     'bg-[#003DD0] hover:bg-blue-800  text-white' 
-    : ' text-[#2F2B3DB2]  hover:bg-gray-200 ' }`}>
-  <span className='mr-2 text-[#2F2B3DB2]/90 '> 
+    : ' text-black  hover:bg-gray-200 ' }`}>
+  <span className='mr-2 '> 
   {nav.icon}
   </span>    
       {nav.name}

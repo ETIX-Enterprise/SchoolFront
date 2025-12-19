@@ -16,6 +16,7 @@ import Bookings from './Tabs/Bookings.tsx'
 import Payments from './Tabs/Payments.tsx'
 import ReportsPage from './Tabs/Reports.tsx'
 import Tracking from './Tabs/Tracking.tsx'
+import NotificationPage from './Tabs/Notifications.tsx'
 
 
 
@@ -36,6 +37,7 @@ const route = createBrowserRouter(
     <Route path='booking' element={<Bookings />} />
     <Route path='payment' element={<Payments />} />
     <Route path='reports' element={<ReportsPage />} />
+    <Route path='notifications' element={<NotificationPage />} />
     </Route>
     </>
 

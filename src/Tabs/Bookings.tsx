@@ -8,7 +8,7 @@ function Bookings() {
     <div className='p-3'>
       <div className="flex pb-2 justify-between">
         <div className="">
-<div className="relative flex bg-transparent shadow-lg">
+<div className="relative flex bg-transparent ">
   <select className="w-full bg-white border border-gray-300 text-gray-700 py-2  pl-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500 appearance-none">
     <option value="option1">Filter bookings</option>
     <option value="option2">Huye - kigali</option>

@@ -7,6 +7,7 @@ import { BiUser } from 'react-icons/bi'
 import typing from "../assets/lottie/typing.json"
 import UseIsSmallScreen from '../Hooks/UseIsSmallScreen'
 import Typin from './typin'
+import { Search } from 'lucide-react'
     type HeaderProps = {
         isNavOpen ? : boolean
     }
@@ -24,16 +25,16 @@ useEffect(()=>{
     
   return (
     <>
-    <header className={`fixed ${isNavOpen ? "left-[243px]" : "left-[60px]"}  top-[15.98px] w-full h-[44.030616760253906px] p-3 border-b bg-white border-[#D0D0D0]`}>
+    <header className={`fixed ${isNavOpen ? "left-[243px]" : "left-[60px]"}  top-[15.98px] w-full h-[44.030616760253906px] p-3 border-b bg-white border-gray-300`}>
       {/* Search bar*/}
         <div className={`flex justify-between  ${isNavOpen  == false ? "w-[1170px]" : "sm:max-w-[1000px]"}`}>
         <div className="flex">
-          <img src={search} className='w-5 h-5 mr-4 mt-1' />
+         <Search className='text-black w-6 h-6 mt-[1.5px] mr-2'/>
           <input type="text" onChange={()=> {
              setTimeout(()=> setIsTyping(true), 100),
-             setIsTyping(false)}} className='bg-transparent w-full text-[14px] font-normal text-[#D0D0D0] placeholder:text-[#D0D0D0]  focus:outline-none focus:ring-0' placeholder='Search any thing here...|' />
+             setIsTyping(false)}} className='bg-transparent w-full text-[14px] font-normal text-black placeholder:text-gray-600  focus:outline-none focus:ring-0' placeholder='Search any thing here...|' />
           {isTyping ? 
-          <div className="ml-5 absolute top-[-75px] left-[300px]">
+          <div className="ml-5 absolute top-[-75px] left-[200px]">
             <Typin data={typing} width={100} height={50} />
           </div>
         : ''}

@@ -1,7 +1,5 @@
 import React from 'react'
-import filter from "/Icona/filter.png"
-import upload from "/Icona/upload.png"
-import vector from "/Icona/Vector.png"
+
 import upVector from "/Icona/upArrow.png"
 import { LineCharts } from '../components/Charts'
 import Dots from "/Icona/dots.png"
@@ -69,7 +67,7 @@ const data = [
   return (
     <div className='w-full flex-1 space-y-3 h-full'>
      <header className='w-full px-5 border-b border-[#D0D0D0] py-2 flex justify-between'>
-        <h1 className='text-[24px] text-black font-semibold '>Overview</h1>
+        <h1 className='text-[20px] text-blue-800 font-medium '>Rwanda Academy</h1>
         <div className="flex w-[200px] justify-around">
             <button className="bg-blue-800 p-1 cursor-pointer hover:bg-blue-700 hover:scale-105 transition-all duration-700  text-[14px] text-white font-normal w-[87px] flex justify-center items-center h-[35px] rounded-[8px]">
             <Filter className='w-4 h-4 mr-2'/>
