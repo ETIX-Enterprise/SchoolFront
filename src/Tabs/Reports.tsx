@@ -1,25 +1,15 @@
-import React, { useState } from "react";
-import { FiMoreVertical } from "react-icons/fi";
+import React, { useMemo, useState } from "react";
+import { FiDownload } from "react-icons/fi";
 
-export type Booking = {
-  id: string;
-  ticketNo: string;
-  agency: string;
-  destination: string;
-  time: string;
-  date: string;
-  status: "Paid" | "Pending" | "Cancelled";
-};
+type BookingStatus = "Paid" | "Pending" | "Cancelled";
+type JourneyStatus = "completed" | "pending";
+type AttendanceStatus = "on road" | "arrived";
 
-const sampleData: Booking[] = Array.from({ length: 10 }).map((_, i) => ({
-  id: String(i + 1),
-  ticketNo: "001",
-  agency: "Virunga",
-  destination: "Kigali",
-  time: "08:00",
-  date: "23/12/2025",
-  status: i === 0 ? "Paid" : "Pending",
-}));
+const years = [2024, 2025];
+const months = [
+  "January","February","March","April","May","June",
+  "July","August","September","October","November","December"
+];
 
 const tabs = [
   "Bookings",
@@ -29,105 +19,218 @@ const tabs = [
   "Incident Reports",
 ];
 
+/* ---------------- MOCK DATA ---------------- */
+
+const mockBookings = [
+  { date: "2025-01-12", status: "Confirmed", payment: "Paid", tickets: 2 },
+  { date: "2025-01-20", status: "Confirmed", payment: "Pending", tickets: 1 },
+];
+
+const mockStudents = [
+  {
+    name: "Jean Claude",
+    grade: "S3",
+    phone: "078xxxxxxx",
+    city: "Kigali",
+    district: "Gasabo",
+    health: "Good",
+    arrived: true,
+    status: "arrived" as AttendanceStatus,
+  },
+  {
+    name: "Aline Uwase",
+    grade: "P6",
+    phone: "072xxxxxxx",
+    city: "Huye",
+    district: "Ngoma",
+    health: "Good",
+    arrived: false,
+    status: "on road" as AttendanceStatus,
+  },
+];
+
+const mockJourneys = [
+  {
+    id: "J001",
+    bus: "RAB 234 A",
+    route: "Kigali → Huye",
+    passengers: 45,
+    departure: "08:00",
+    eta: "12:30",
+    status: "completed" as JourneyStatus,
+  },
+];
+
+const mockIncidents = [
+  {
+    journeyId: "J001",
+    hasIncident: true,
+    message: "Minor delay due to road construction near Muhanga.",
+  },
+];
+
+/* ---------------- COMPONENT ---------------- */
+
 export default function ReportsPage() {
-  const [activeTab, setActiveTab] = useState<string>("Payments");
+  const [activeTab, setActiveTab] = useState("Bookings");
+  const [year, setYear] = useState(2025);
+  const [month, setMonth] = useState("January");
+  const [incidentModal, setIncidentModal] = useState<string | null>(null);
+
+  const downloadReport = () => {
+    alert(`Downloading ${activeTab} report for ${month} ${year}`);
+  };
 
   return (
-    <div className="min-h-screen p-8">
-      <div className="max-w-6xl mx-auto">
-        <header className="mb-5">
-          <h1 className="text-[20px] font-semibold text-gray-800">Reports</h1>
-        </header>
+    <div className="p-8 max-w-7xl mx-auto">
+      <h1 className="text-xl font-semibold mb-6">Reports</h1>
 
-        {/* Tabs */}
-        <nav className="mb-6 border-b border-gray-300">
-          <ul className="flex items-end gap-6">
-            {tabs.map((t) => (
-              <li key={t} className="pb-4">
-                <button
-                  onClick={() => setActiveTab(t)}
-                  className={`text-sm font-medium pb-3 ${
-                    activeTab === t
-                      ? "text-gray-900 border-b-2 border-black"
-                      : "text-gray-500 hover:text-gray-700"
-                  }`}
-                >
-                  {t}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      {/* Filters */}
+      <div className="flex items-center gap-4 mb-6">
+        <select value={year} onChange={(e) => setYear(Number(e.target.value))} className="border px-3 py-2 rounded">
+          {years.map(y => <option key={y}>{y}</option>)}
+        </select>
 
-        {/* Card / Table container */}
-        <section>
-          <div className="bg-white rounded-xl shadow-sm p-4">
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-left">
-                <thead>
-                  <tr className="text-sm font-normal text-gray-800">
-                    <th className="py-3 pr-6">Ticket No</th>
-                    <th className="py-3 pr-6">Agency</th>
-                    <th className="py-3 pr-6">Destination</th>
-                    <th className="py-3 pr-6">Time</th>
-                    <th className="py-3 pr-6">Date</th>
-                    <th className="py-3 pr-6">Status</th>
-                    <th className="py-3 pr-6">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {sampleData.map((row) => (
-                    <tr key={row.id} className="text-sm text-gray-700">
-                      <td className="py-4 pr-6">{row.ticketNo}</td>
-                      <td className="py-4 pr-6">{row.agency}</td>
-                      <td className="py-4 pr-6">{row.destination}</td>
-                      <td className="py-4 pr-6">{row.time}</td>
-                      <td className="py-4 pr-6">{row.date}</td>
-                      <td className="py-4 pr-6">
-                        <StatusPill status={row.status} />
-                      </td>
-                      <td className="py-4 pr-6">
-                        <button
-                          aria-label="actions"
-                          className="p-2 rounded-full hover:bg-gray-100"
-                        >
-                          <FiMoreVertical size={18} />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        <select value={month} onChange={(e) => setMonth(e.target.value)} className="border px-3 py-2 rounded">
+          {months.map(m => <option key={m}>{m}</option>)}
+        </select>
 
-            {/* Optional: a simple pagination bar to match the visual style */}
-            <div className="mt-6 flex items-center justify-between">
-              <div className="text-sm text-gray-500">Showing 1–10 of 10</div>
-              <div className="flex gap-2">
-                <button className="px-3 py-1 rounded-md bg-white border border-gray-200 text-sm hover:shadow-sm">
-                  Prev
-                </button>
-                <button className="px-3 py-1 rounded-md bg-white border border-gray-200 text-sm hover:shadow-sm">
-                  Next
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <button
+          onClick={downloadReport}
+          className="ml-auto flex items-center gap-2 px-4 py-2 bg-black text-white rounded"
+        >
+          <FiDownload /> Download
+        </button>
       </div>
+
+      {/* Tabs */}
+      <div className="flex gap-6 border-b mb-6">
+        {tabs.map(t => (
+          <button
+            key={t}
+            onClick={() => setActiveTab(t)}
+            className={`pb-3 ${
+              activeTab === t ? "border-b-2 border-black font-medium" : "text-gray-500"
+            }`}
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+
+      {/* CONTENT */}
+      {activeTab === "Bookings" && (
+        <Table
+          headers={["Date", "Status", "Payment", "Tickets"]}
+          rows={mockBookings.map(b => [b.date, b.status, b.payment, b.tickets])}
+        />
+      )}
+
+      {activeTab === "Payments" && (
+        <Table
+          headers={["Payment Status", "Count"]}
+          rows={[
+            ["Paid", mockBookings.filter(b => b.payment === "Paid").length],
+            ["Unpaid", mockBookings.filter(b => b.payment !== "Paid").length],
+          ]}
+        />
+      )}
+
+      {activeTab === "Student Attendance" && (
+        <Table
+          headers={["Name","Grade","Phone","City","District","Health","Arrived","Status"]}
+          rows={mockStudents.map(s => [
+            s.name,
+            s.grade,
+            s.phone,
+            s.city,
+            s.district,
+            s.health,
+            <input type="checkbox" checked={s.arrived} readOnly />,
+            s.status,
+          ])}
+        />
+      )}
+
+      {activeTab === "Journey Summary" && (
+        <Table
+          headers={["Bus","Route","Passengers","Departure","ETA","Status"]}
+          rows={mockJourneys.map(j => [
+            j.bus,
+            j.route,
+            j.passengers,
+            j.departure,
+            j.eta,
+            j.status,
+          ])}
+        />
+      )}
+
+      {activeTab === "Incident Reports" && (
+        <Table
+          headers={["Journey","Status","Incident"]}
+          rows={mockJourneys.map(j => {
+            const incident = mockIncidents.find(i => i.journeyId === j.id);
+            return [
+              j.route,
+              j.status,
+              incident ? (
+                <button
+                  onClick={() => setIncidentModal(incident.message)}
+                  className="text-red-600 animate-pulse"
+                >
+                  View Incident
+                </button>
+              ) : (
+                "Good condition"
+              ),
+            ];
+          })}
+        />
+      )}
+
+      {/* INCIDENT MODAL */}
+      {incidentModal && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
+          <div className="bg-white p-6 rounded max-w-md">
+            <h3 className="font-semibold mb-3">Incident Report</h3>
+            <p className="text-sm text-gray-700">{incidentModal}</p>
+            <button
+              onClick={() => setIncidentModal(null)}
+              className="mt-4 px-4 py-2 bg-black text-white rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-function StatusPill({ status }: { status: Booking["status"] }) {
-  const base =
-    "inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm";
+/* ---------------- REUSABLE TABLE ---------------- */
 
-  if (status === "Paid") {
-    return <span className={`${base} bg-green-100 text-green-800`}>Paid</span>;
-  }
-  if (status === "Cancelled") {
-    return <span className={`${base} bg-yellow-100 text-yellow-800`}>Cancelled</span>;
-  }
-  return <span className={`${base} bg-red-100 text-red-700`}>Pending</span>;
+function Table({ headers, rows }: { headers: string[]; rows: any[][] }) {
+  return (
+    <div className="overflow-x-auto bg-white rounded shadow">
+      <table className="min-w-full text-sm">
+        <thead className="bg-gray-50">
+          <tr>
+            {headers.map(h => (
+              <th key={h} className="px-4 py-3 text-left">{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i} className="border-t">
+              {r.map((c, j) => (
+                <td key={j} className="px-4 py-3">{c}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
