@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiAddToQueue, BiEnvelope } from 'react-icons/bi'
 import { GiConfirmed } from 'react-icons/gi'
+import BookingWizardModal from '../components/BookingWizardModal'
 
 
 function Bookings() {
+  const [showBookingModal, setShowBookingModal] = useState(false) ;
   return (
     <div className='p-3'>
       <div className="flex pb-2 justify-between">
@@ -19,7 +21,9 @@ function Bookings() {
   </div>
 </div>
         </div>
-            <div className="px-5 shadow-lg hover:shadow-2xl hover:bg-blue-900 hover:scale-105 cursor-pointer transition-all duration-700 py-2 text-[14px] font-medium flex justify-center items-center rounded-lg bg-blue-800 text-white">
+            <div 
+            onClick={() => setShowBookingModal(true)}
+            className="px-5 shadow-lg hover:shadow-2xl hover:bg-blue-900 hover:scale-105 cursor-pointer transition-all duration-700 py-2 text-[14px] font-medium flex justify-center items-center rounded-lg bg-blue-800 text-white">
     <BiAddToQueue className='text-white w-5 h-5 mr-2'/>  Create booking
     </div>
       </div>
@@ -49,11 +53,16 @@ function Bookings() {
   <div className="">
  <p className='text-[17px] text-center font-medium'>No bookings yet</p>
   <p className='text-[14px] font-normal text-gray-400'>tap here to create your first booking</p>
-              <div className="px-5 mt-10 shadow-lg hover:shadow-2xl hover:bg-blue-900 hover:scale-105 cursor-pointer transition-all duration-700 py-2 text-[14px] font-medium flex justify-center items-center rounded-lg bg-blue-800 text-white">
+              <div
+               onClick={() => setShowBookingModal(true)}
+               className="px-5 mt-10 shadow-lg hover:shadow-2xl hover:bg-blue-900 hover:scale-105 cursor-pointer transition-all duration-700 py-2 text-[14px] font-medium flex justify-center items-center rounded-lg bg-blue-800 text-white">
     <BiAddToQueue className='text-white w-5 h-5 mr-2'/>  Create booking
     </div>
   </div>
 </div>
+      {showBookingModal && (
+        <BookingWizardModal onClose={() => setShowBookingModal(false)} />
+      )}
     </div>
   )
 }

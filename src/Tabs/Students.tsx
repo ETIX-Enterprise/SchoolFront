@@ -1,134 +1,379 @@
-import React from 'react'
-import sortUp from "/Icona/sortU.png"
-import sortDown from "/Icona/sortD.png"
-import { GrAdd } from 'react-icons/gr'
+import React, { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import StudentTable from '../components/studentTable'
-import { useState } from 'react'
+import { DownloadCloud } from 'lucide-react'
 
+
+// ---------------- TYPES ----------------
+type Student = {
+  id: number
+  name: string
+  grade: string
+  phone: string
+  city: string
+  district: string
+  status: 'Arrived' | 'Pending'
+}
+
+type YearGroup = {
+  year: string
+  students: Student[]
+}
+
+// ---------------- COMPONENT ----------------
 function Students() {
-    const [students, setStudents] = useState([
+  const [years, setYears] = useState<YearGroup[]>([
     {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
+      year: '2024 / Year 3',
+      students: [
         {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
+          id: 1,
+          name: 'UMUKURA Olivier',
+          grade: 'Year 3',
+          phone: '+250 788 924 456',
+          city: 'Kigali',
+          district: 'Kicukiro',
+          status: 'Arrived',
+        },
+      ],
     },
-        {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
-        {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
-            {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
-            {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
-            {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
-            {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
-            {
-      id: 1,
-      name: "UMUKURA Olivier",
-      grade: "Year 3",
-      phone: "+250 788 924 456",
-      city: "Kigali",
-      district: "Kicukiro",
-      status: "Arrived" as const,
-    },
-  ]);
+  ])
 
-  const handleDelete = (id: number) => {
-    setStudents((prev:any) => prev.filter((s:any) => s.id !== id));
-  };
+  const [activeYear, setActiveYear] = useState(0)
+  const [search, setSearch] = useState('')
+
+  const RWANDA_CITIES = ['Kigali', 'Southern', 'Northern', 'Eastern', 'Western']
+
+const RWANDA_DISTRICTS: Record<string, string[]> = {
+  Kigali: ['Gasabo', 'Kicukiro', 'Nyarugenge'],
+  Southern: [
+    'Huye',
+    'Nyanza',
+    'Gisagara',
+    'Nyamagabe',
+    'Muhanga',
+    'Kamonyi',
+    'Ruhango',
+    'Nyaruguru',
+  ],
+  Northern: ['Musanze', 'Gakenke', 'Gicumbi', 'Rulindo', 'Burera'],
+  Eastern: [
+    'Rwamagana',
+    'Kayonza',
+    'Ngoma',
+    'Kirehe',
+    'Bugesera',
+    'Gatsibo',
+    'Nyagatare',
+  ],
+  Western: [
+    'Rubavu',
+    'Rusizi',
+    'Rutsiro',
+    'Nyamasheke',
+    'Karongi',
+    'Ngororero',
+  ],
+}
+
+
+  // Modal state
+  const [showYearModal, setShowYearModal] = useState(false)
+  const [showStudentModal, setShowStudentModal] = useState(false)
+
+  // Form state
+  const [newYear, setNewYear] = useState('')
+  const [studentForm, setStudentForm] = useState<Omit<Student, 'id'>>({
+    name: '',
+    grade: '',
+    phone: '',
+    city: '',
+    district: '',
+    status: 'Pending',
+  })
+
+  // ---------------- ACTIONS ----------------
+  const addYear = () => {
+    if (!newYear.trim()) return
+
+    setYears((prev) => [...prev, { year: newYear, students: [] }])
+    setActiveYear(years.length)
+    setNewYear('')
+    setShowYearModal(false)
+  }
+
+  const addStudent = () => {
+    if (!studentForm.name.trim()) return
+
+    const newStudent: Student = {
+      id: Date.now(),
+      ...studentForm,
+      grade: years[activeYear].year,
+    }
+
+    setYears((prev) =>
+      prev.map((y, i) =>
+        i === activeYear
+          ? { ...y, students: [...y.students, newStudent] }
+          : y
+      )
+    )
+
+    setStudentForm({
+      name: '',
+      grade: '',
+      phone: '',
+      city: '',
+      district: '',
+      status: 'Pending',
+    })
+    setShowStudentModal(false)
+  }
+
+  const deleteStudent = (id: number) => {
+    setYears((prev) =>
+      prev.map((y, i) =>
+        i === activeYear
+          ? { ...y, students: y.students.filter((s) => s.id !== id) }
+          : y
+      )
+    )
+  }
+
+  const filteredStudents = years[activeYear].students.filter((s) =>
+    s.name.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const exportYear = () => {
+    const rows = years[activeYear].students
+    const csv = [
+      'Name,Grade,Phone,City,District,Status',
+      ...rows.map(
+        (s) =>
+          `${s.name},${s.grade},${s.phone},${s.city},${s.district},${s.status}`
+      ),
+    ].join('\n')
+
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = `${years[activeYear].year}-students.csv`
+    link.click()
+  }
+
   return (
-    <div className='w-full h-full p-4'>
-      {/** import and export buttons */}
-      <div className="flex justify-end">
-        <div className="w-[103px] h-[36px] mr-3 cursor-pointer hover:bg-[#003DD0] text-[#373F51] hover:text-white hover:scale-105 transition-all duration-500 rounded-lg border border-[#848294] flex justify-center items-center p-2">
-         <img src={sortDown}  className='w-1 h-2 mr-2' alt="" />
-         <p className='text-[14px] font-semibold  '>Import</p>
+    <div className="w-full h-full p-4">
+      {/* Header */}
+      <div className="flex mt-4 justify-between items-center">
+        <div>
+          <h1 className="text-[18px] font-semibold">Students</h1>
+          <p className="text-sm text-gray-500">
+            Manage students by academic year
+          </p>
         </div>
-        <div className="w-[103px] h-[36px] rounded-lg cursor-pointer bg-[#003DD0] hover:bg-[#032b8a] hover:text-white hover:scale-105 transition-all duration-500 flex justify-center items-center p-2">
-         <img src={sortUp}  className='w-1 h-2 mr-2' alt="" />
-         <p className='text-[14px] font-semibold text-white '>Export</p>
+
+        <div className="flex gap-3">
+          <button
+            onClick={() => setShowYearModal(true)}
+            className="btn-outline border text-[14px] border-gray-400 rounded-lg cursor-pointer hover:text-white transition-colors duration-500 hover:bg-blue-800"
+          >
+            + Add Year
+          </button>
+        <button onClick={exportYear} className=" text-[14px] flex font-medium bg-green-800 cursor-pointer hover:bg-blue-900 transition-colors duration-500 btn-primary">
+         <DownloadCloud  className='w-5 h-5 mr-1'/> Download Report
+        </button>
         </div>
-      
       </div>
-       {/** header section*/}
-       <div className="flex mt-4 justify-between">
-        <div className="flex-1 space-y-[1px]">
-          <h1 className='text-[#010102] text-[18px] font-semibold'>Students</h1>
-          <p className='text-[14px] text-[#696778] font-medium'>Student Registered On MIT</p>
-        </div>
-        <div className="flex justify-between">
-          <div className="w-[135px] mr-5 h-[40px] text-white bg-blue-800 shodow-lg hover:bg-blue-700 transition-all duration-500 hover:scale-105 rounded-lg flex items-center justify-center p-2 cursor-pointer">
-           <GrAdd className='w-3 h-3 mr-1'/>
-           <p className='text-[14px] font-medium'>
-            Add Student
-           </p>
-          </div>
-          <div className="w-[235px] h-[40px] flex rounded shadow-lg shadow-gray-50 border border-gray-300">
-            <input className='w-full h-full  focus:outline-none placeholder:text-[#828282] text-[14px] px-3  font-medium' placeholder='Search Student' type="text" name="" id="" />
-            <BiSearch className='w-4 mt-3  mr-1 h-4'/>
-          </div>
-        </div>
-       </div>
-      <div className="px-3 mb-10">
-        <StudentTable data={students} onDelete={handleDelete}  />
+
+      {/* Year Tabs */}
+      <div className="flex gap-2 mt-5 justify-between overflow-x-auto">
+        <div className="flex gap-2">      
+
+        {years.map((y, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveYear(i)}
+            className={`px-4 py-2 rounded-lg text-sm transition ${
+              i === activeYear ? 'bg-blue-800 text-white' : 'bg-gray-100 cursor-pointer'
+            }`}
+          >
+            {y.year}
+          </button>
+        ))}
+      </div>
+      <div className="flex justify-end ">
+                  <button
+            onClick={() => setShowStudentModal(true)}
+            className="btn-primary bg-blue-800 text-[14px] cursor-pointer hover:bg-blue-900 transition-all duration-500"
+          >
+            + Add Student
+          </button>
+      </div>
+      </div>
+
+      {/* Search */}
+      <div className="mt-4 w-[260px] flex border rounded-lg overflow-hidden">
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search student"
+          className="w-full px-3 text-sm outline-none"
+        />
+        <BiSearch className="m-3" />
+      </div>
+
+      {/* Table */}
+      <div className="mt-6">
+        <StudentTable data={filteredStudents} onDelete={deleteStudent} />
+      </div>
+
+      {/* Add Year Modal */}
+      {showYearModal && (
+        <Modal title="Add Academic Year" onClose={() => setShowYearModal(false)}>
+          <input
+            value={newYear}
+            onChange={(e) => setNewYear(e.target.value)}
+            placeholder="e.g. 2025"
+            className="modal-input focus:outline-none "
+          />
+          <button
+            onClick={addYear}
+            className="btn-primary bg-blue-800 cursor-pointer hover:bg-blue-900 transition-colors duration-500 text-[14px] w-full mt-4"
+          >
+            Create Year
+          </button>
+        </Modal>
+      )}
+
+      {/* Add Student Modal */}
+      {showStudentModal && (
+        <Modal title={`Add student to ${activeYear} year list`} onClose={() => setShowStudentModal(false)}>
+    <div className="grid grid-cols-2 gap-3">
+      {/* Name */}
+      <input
+        placeholder="Student name"
+        value={studentForm.name}
+        onChange={(e) =>
+          setStudentForm((p) => ({ ...p, name: e.target.value }))
+        }
+        className="modal-input focus:outline-none"
+      />
+
+      {/* Parent Phone */}
+      <input
+        placeholder="Parent phone"
+        value={studentForm.phone}
+        onChange={(e) =>
+          setStudentForm((p) => ({ ...p, phone: e.target.value }))
+        }
+        className="modal-input focus:outline-none"
+      />
+
+      {/* City (autocomplete) */}
+      <input
+        list="rwanda-cities"
+        placeholder="City / Province"
+        value={studentForm.city}
+        onChange={(e) =>
+          setStudentForm((p) => ({
+            ...p,
+            city: e.target.value,
+            district: '', // reset district when city changes
+          }))
+        }
+        className="modal-input focus:outline-none"
+      />
+      <datalist id="rwanda-cities">
+        {RWANDA_CITIES.map((city) => (
+          <option key={city} value={city} />
+        ))}
+      </datalist>
+
+      {/* District (depends on city) */}
+      <input
+        list="rwanda-districts"
+        placeholder="District"
+        value={studentForm.district}
+        onChange={(e) =>
+          setStudentForm((p) => ({ ...p, district: e.target.value }))
+        }
+        className="modal-input focus:outline-none"
+        disabled={!studentForm.city}
+      />
+      <datalist id="rwanda-districts">
+        {(RWANDA_DISTRICTS[studentForm.city] || []).map((d) => (
+          <option key={d} value={d} />
+        ))}
+      </datalist>
+
+      {/* Status (full width) */}
+      <select
+        value={studentForm.status}
+        onChange={(e) =>
+          setStudentForm((p) => ({
+            ...p,
+            status: e.target.value as Student['status'],
+          }))
+        }
+        className="modal-input col-span-2 focus:outline-none"
+      >
+        <option value="Pending">Pending</option>
+        <option value="Arrived">Arrived</option>
+      </select>
+    </div>
+
+    <button
+      onClick={addStudent}
+      className="btn-primary bg-blue-800 cursor-pointer hover:bg-blue-900 transition-colors duration-500 text-[14px] w-full mt-5"
+    >
+      Add Student
+    </button>
+        </Modal>
+      )}
+
+      {/* Styles */}
+      <style>{`
+        .btn-primary {
+          color:white;
+          padding:7px 14px;
+          border-radius:8px;
+        }
+        .btn-outline {
+          padding:8px 14px;
+        }
+        .modal-input {
+          width:100%;
+          border:1px solid #ddd;
+          padding:8px;
+          border-radius:6px;
+          margin-top:10px;
+        }
+      `}</style>
+    </div>
+  )
+}
+
+// ---------------- MODAL ----------------
+function Modal({
+  title,
+  children,
+  onClose,
+}: {
+  title: string
+  children: React.ReactNode
+  onClose: () => void
+}) {
+  return (
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+      <div className="bg-white w-[400px] rounded-xl p-6">
+        <h2 className="text-lg font-semibold text-[16px] mb-4">{title}</h2>
+        {children}
+        <button
+          onClick={onClose}
+          className="text-sm text-red-500 bg-gray-50 rounded-lg cursor-pointer hover:bg-red-100 transition-colors duration-500 px-4 py-2 mt-4"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   )
