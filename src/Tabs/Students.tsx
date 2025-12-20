@@ -317,8 +317,8 @@ const RWANDA_DISTRICTS: Record<string, string[]> = {
         }
         className="modal-input col-span-2 focus:outline-none"
       >
-        <option value="Pending">Pending</option>
-        <option value="Arrived">Arrived</option>
+        <option value="Pending">Healthy</option>
+        <option value="Arrived">Sick</option>
       </select>
     </div>
 

@@ -22,7 +22,7 @@ export default function ModernSelect({
   return (
     <Listbox value={value} onChange={onChange}>
       <div className="relative mt-1">
-        <Listbox.Button className="relative w-full cursor-pointer rounded-lg border bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <Listbox.Button className="relative w-full cursor-pointer rounded-lg border border-gray-400 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
           <span className="block truncate">
             {value ? value.label : placeholder}
           </span>

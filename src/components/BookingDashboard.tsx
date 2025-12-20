@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { BookingCard } from './BookingCard';
 import { BookingFilters } from './BookingFilters';
 import { CreditCard, CheckCircle } from 'lucide-react';
+import { PaymentModal } from './PaymentModal';
 
 export interface Booking {
   id: string;
@@ -83,7 +84,27 @@ export function BookingDashboard() {
   const [bookings, setBookings] = useState<Booking[]>(mockBookings);
   const [activeTab, setActiveTab] = useState<'unpaid' | 'paid'>('unpaid');
   const [selectedDestination, setSelectedDestination] = useState<string>('all');
+  const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [dateFilter, setDateFilter] = useState<string>('');
+
+  const handleConfirmPayment = (phone: string) => {
+  if (!selectedBooking) return;
+
+  console.log("Processing payment:", {
+    bookingId: selectedBooking.id,
+    phone,
+    amount: selectedBooking.amount,
+  });
+
+  setBookings(prev =>
+    prev.map(b =>
+      b.id === selectedBooking.id ? { ...b, isPaid: true } : b
+    )
+  );
+
+  setSelectedBooking(null);
+};
+
 
   const handleMarkAsPaid = (bookingId: string) => {
     setBookings(prevBookings =>
@@ -195,11 +216,19 @@ export function BookingDashboard() {
             <BookingCard
               key={booking.id}
               booking={booking}
-              onMarkAsPaid={handleMarkAsPaid}
+              onPayClick={setSelectedBooking}
             />
           ))
         )}
       </div>
+
+      {/** Booking modal */}
+      <PaymentModal
+  isOpen={!!selectedBooking}
+  amount={selectedBooking?.amount ?? 0}
+  onClose={() => setSelectedBooking(null)}
+  onConfirm={handleConfirmPayment}
+/>
     </div>
   );
 }

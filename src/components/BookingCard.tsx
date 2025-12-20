@@ -3,10 +3,10 @@ import { Booking } from './BookingDashboard';
 
 interface BookingCardProps {
   booking: Booking;
-  onMarkAsPaid: (bookingId: string) => void;
+  onPayClick: (booking: Booking) => void;
 }
 
-export function BookingCard({ booking, onMarkAsPaid }: BookingCardProps) {
+export function BookingCard({ booking, onPayClick }: BookingCardProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -51,17 +51,17 @@ export function BookingCard({ booking, onMarkAsPaid }: BookingCardProps) {
 
         <div className="mt-15">
           <div className="flex items-center gap-2">
-            <span className="text-red-800 mb-1">{booking.amount.toLocaleString()}RFW</span>
+            <span className="text-red-600 mb-1">{booking.amount.toLocaleString()}RFW</span>
           </div>
-          {!booking.isPaid && (
-            <button
-              onClick={() => onMarkAsPaid(booking.id)}
-              className="px-4 py-2 bg-blue-800 cursor-pointer flex text-white  font-medium text-[14px] rounded-md hover:bg-red-700 transition-colors duration-500 "
-            >
-                <Wallet className='w-4 mt-[2px] mr-2 h-4'/>
-              Pay
-            </button>
-          )}
+   {!booking.isPaid && (
+  <button
+    onClick={() => onPayClick(booking)}
+    className="px-4 py-2 bg-blue-800 flex text-white font-medium text-[14px] rounded-md hover:bg-red-700 transition-colors duration-500"
+  >
+    <Wallet className="w-4 mt-[2px] mr-2 h-4" />
+    Pay
+  </button>
+    )}
         </div>
       </div>
     </div>

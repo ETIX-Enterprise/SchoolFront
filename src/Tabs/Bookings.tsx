@@ -2,23 +2,28 @@ import React, { useState } from 'react'
 import { BiAddToQueue, BiEnvelope } from 'react-icons/bi'
 import { GiConfirmed } from 'react-icons/gi'
 import BookingWizardModal from '../components/BookingWizardModal'
+import ModernSelect from '../components/ModernSelect';
 
 
 function Bookings() {
   const [showBookingModal, setShowBookingModal] = useState(false) ;
+  const [filter , setFilter] = useState<{ label: string; value: string } | undefined>();
   return (
     <div className='p-3'>
       <div className="flex pb-2 justify-between">
         <div className="">
 <div className="relative flex bg-transparent ">
-  <select className="w-full bg-white border border-gray-300 text-gray-700 py-2  pl-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-500 appearance-none">
-    <option value="option1">Filter bookings</option>
-    <option value="option2">Huye - kigali</option>
-    <option value="option3">Huye - Rusizi</option>
-  </select>
-  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-  </div>
+     <ModernSelect
+       value={filter}
+       options={[
+        {label :"Huye - kigali" , value:"Huye - kigali"},
+        {label :"Kigali - Rubavu" , value:"Huye - kigali"},
+        {label :"Huye - Nyanza" , value:"Huye - kigali"},
+        {label :"Huye - Muhanga" , value:"Huye - kigali"}
+       ]}
+       placeholder="Filter bookings"
+       onChange={setFilter}
+     />
 </div>
         </div>
             <div 
