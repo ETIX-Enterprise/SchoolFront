@@ -73,6 +73,9 @@ const mockJourneys = [
 
 const mockIncidents = [
   {
+    date : "2025/10/12",
+    bus: "RAB 234 A",
+    route : "Kigali → Huye",
     journeyId: "J001",
     hasIncident: true,
     message: "Minor delay due to road construction near Muhanga.",
@@ -169,10 +172,12 @@ export default function ReportsPage() {
 
       {activeTab === "Incident Reports" && (
         <Table
-          headers={["Journey","Status","Incident"]}
+          headers={["Date" ,"Bus","Journey","Status","Incident"]}
           rows={mockJourneys.map(j => {
             const incident = mockIncidents.find(i => i.journeyId === j.id);
             return [
+              j.date,
+              j.bus,
               j.route,
               j.status,
               incident ? (

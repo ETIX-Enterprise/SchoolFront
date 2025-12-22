@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import StudentTable from '../components/studentTable'
 import { DownloadCloud } from 'lucide-react'
+import { UploadCloud } from 'lucide-react'
+
 
 
 // ---------------- TYPES ----------------
@@ -41,6 +43,9 @@ function Students() {
 
   const [activeYear, setActiveYear] = useState(0)
   const [search, setSearch] = useState('')
+  const [showUploadModal, setShowUploadModal] = useState(false)
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
 
   const RWANDA_CITIES = ['Kigali', 'Southern', 'Northern', 'Eastern', 'Western']
 
@@ -201,14 +206,23 @@ const RWANDA_DISTRICTS: Record<string, string[]> = {
           </button>
         ))}
       </div>
-      <div className="flex justify-end ">
-                  <button
-            onClick={() => setShowStudentModal(true)}
-            className="btn-primary bg-blue-800 text-[14px] cursor-pointer hover:bg-blue-900 transition-all duration-500"
-          >
-            + Add Student
-          </button>
-      </div>
+<div className="flex justify-end gap-2">
+  <button
+    onClick={() => setShowUploadModal(true)}
+    className="btn-outline border text-[14px] border-gray-400 rounded-lg cursor-pointer hover:text-white transition-colors duration-500 hover:bg-blue-800 flex items-center gap-1"
+  >
+    <UploadCloud className="w-4 h-4" />
+    Upload
+  </button>
+
+  <button
+    onClick={() => setShowStudentModal(true)}
+    className="btn-primary bg-blue-800 text-[14px] cursor-pointer hover:bg-blue-900 transition-all duration-500"
+  >
+    + Add Student
+  </button>
+</div>
+
       </div>
 
       {/* Search */}
@@ -226,6 +240,67 @@ const RWANDA_DISTRICTS: Record<string, string[]> = {
       <div className="mt-6">
         <StudentTable data={filteredStudents} onDelete={deleteStudent} />
       </div>
+
+{showUploadModal && (
+  <Modal title="Upload Students" onClose={() => setShowUploadModal(false)}>
+    {/* Drop zone */}
+    <label
+      htmlFor="file-upload"
+      className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-800 transition"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        e.preventDefault()
+        const file = e.dataTransfer.files[0]
+        if (file) setSelectedFile(file)
+      }}
+    >
+      <UploadCloud className="w-8 h-8 text-gray-400 mb-2" />
+      <p className="text-sm text-gray-600">
+        <span className="font-medium text-blue-800">
+          Click to upload
+        </span>{' '}
+        or drag and drop
+      </p>
+      <p className="text-xs text-gray-400 mt-1">
+        CSV or Excel file
+      </p>
+
+      <input
+        id="file-upload"
+        type="file"
+        accept=".csv,.xlsx"
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files?.[0]) {
+            setSelectedFile(e.target.files[0])
+          }
+        }}
+      />
+    </label>
+
+    {/* Selected file */}
+    {selectedFile && (
+      <div className="mt-3 text-sm text-gray-700">
+        Selected file: <span className="font-medium">{selectedFile.name}</span>
+      </div>
+    )}
+
+    {/* Upload button */}
+    <button
+      onClick={() => {
+        if (!selectedFile) return
+        // TODO: send file to backend
+        console.log('Uploading:', selectedFile)
+        setShowUploadModal(false)
+        setSelectedFile(null)
+      }}
+      className="btn-primary bg-blue-800 cursor-pointer hover:bg-blue-900 transition-colors duration-500 text-[14px] w-full mt-5"
+      disabled={!selectedFile}
+    >
+      Upload File
+    </button>
+  </Modal>
+)}
 
       {/* Add Year Modal */}
       {showYearModal && (
