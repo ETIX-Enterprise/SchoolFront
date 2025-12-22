@@ -2,7 +2,10 @@
 import Map, { Marker, Source, Layer } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { Journey } from "./app";
-import {  BusFront, MapPin } from "lucide-react";
+import {  PinIcon } from "lucide-react";
+import Lottie from "lottie-react";
+import data from "../assets/lottie/bus.json"
+import location from "/Icona/location.png"
 
 interface Props {
   journeys: Journey[];
@@ -31,7 +34,7 @@ const routesFeature = {
         initialViewState={{
           longitude: 30.0619,
           latitude: -1.9441,
-          zoom: 7,
+          zoom: 8.5,
         }}
         style={{ width: "100%", height: "100%" }}
         mapStyle="https://tiles.stadiamaps.com/styles/alidade_smooth.json"
@@ -65,7 +68,7 @@ const routesFeature = {
 
               <div className={`cursor-pointer relative transform ${selectedJourney?.id === j.id ? "scale-125" : ""}`}>
                 <div className="absolute inset-0 rounded-full bg-blue-400 opacity-30 animate-ping" />
-                <BusFront className={`relative w-6 h-6 ${selectedJourney?.id === j.id ? "text-blue-400" : "text-blue-800"}`} />
+                <Lottie  animationData={data} className={`w-[40px] h-[40px]`}  loop={true} />
               </div>
             </Marker>
 
@@ -80,7 +83,7 @@ const routesFeature = {
               }}
             >
               <div className={`cursor-pointer drop-shadow-lg ${selectedJourney?.id === j.id ? "scale-110" : ""}`}>
-                <MapPin className={`w-7 h-7 ${selectedJourney?.id === j.id ? "text-blue-800" : "text-green-700"}`} />
+                <img src={location} className={`w-7 h-7 `} alt="" />
               </div>
             </Marker>
           </div>

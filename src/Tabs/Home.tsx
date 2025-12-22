@@ -66,19 +66,24 @@ const data = [
 
   return (
     <div className='w-full flex-1 space-y-3 h-full'>
-     <header className='w-full px-5 border-b border-[#D0D0D0] py-2 flex justify-between'>
-        <h1 className='text-[20px] text-blue-800 font-medium '>Rwanda Academy</h1>
-        <div className="flex w-[200px] justify-around">
-            <button className="bg-blue-800 p-1 cursor-pointer hover:bg-blue-700 hover:scale-105 transition-all duration-700  text-[14px] text-white font-normal w-[87px] flex justify-center items-center h-[35px] rounded-[8px]">
-            <Filter className='w-4 h-4 mr-2'/>
-             Filter
-            </button>
-            <button className="bg-blue-800 p-1 cursor-pointer hover:bg-blue-700 hover:scale-105 transition-all duration-700  text-[14px] text-white font-normal w-[87px] flex justify-center items-center h-[35px] rounded-[8px]">
-            <Upload className='w-4 h-4 mr-2'/>
-             Upload
-            </button>
-        </div>
-     </header>
+<header className="w-full px-5 py-3 border-b border-gray-200 flex justify-between items-center">
+  <h1 className="text-[18px] font-semibold text-gray-900">
+    Rwanda Academy
+  </h1>
+
+  <div className="flex gap-2">
+    <button className="px-4 py-2 text-[14px] font-medium rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-100 transition">
+      <Filter className="w-4 h-4 inline mr-2" />
+      Filter
+    </button>
+
+    <button className="px-4 py-2 text-[14px] font-medium rounded-lg bg-blue-800 text-white hover:bg-blue-900 transition">
+      <Upload className="w-4 h-4 inline mr-2" />
+      Upload
+    </button>
+  </div>
+</header>
+
      {/** overview cards */}
      <div className="flex px-5 justify-between">
       {OverViewCards.map((card)=>(
@@ -104,7 +109,7 @@ const data = [
  <div className=" w-full p-3 h-[289px] flex grid-cols-2 gap-5 ">
   <div className="w-full flex-1 space-y-3 border border-gray-200 p-2 h-full rounded-[8px]">
     <p className='text-[15px] text-black font-medium'> Journey Overview</p>
-    <div className="w-full h-[200px] rounded-[16px] p-2 px-3 bg-blue-50">
+    <div className="w-full h-[200px] rounded-[16px] p-2 px-3 bg-gray-100">
       <div className="flex justify-around">
         <p className='text-black font-medium text-[14px]'>Students</p>
         <p className='text-[#1C1C1C66] font-medium text-[14px]'>Transport status |</p>

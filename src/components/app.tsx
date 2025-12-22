@@ -2,8 +2,9 @@
 import { useMemo, useState , useEffect } from "react";
 import { JourneyCard } from "./JourneyCard";
 import { JourneyMap } from "./JourneyMap";
-import { Bus } from "lucide-react";
 import { JSX } from "react/jsx-runtime";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 
 
 export interface Journey {
@@ -20,6 +21,46 @@ export interface Journey {
    destinationCoords: [number, number]; 
    currentCoords?: [number, number];
   }
+export interface Passenger {
+  id: string;
+  student: string;
+  grade: string;
+  parentPhone: string;
+  city: string;
+  district: string;
+  health: string;
+}
+
+export const mockPassengers: Passenger[] = [
+  {
+    id: "p1",
+    student: "Jean Claude",
+    grade: "P5",
+    parentPhone: "0788123456",
+    city: "Kigali",
+    district: "Gasabo",
+    health: "Good",
+  },
+  {
+    id: "p2",
+    student: "Aline Uwase",
+    grade: "P6",
+    parentPhone: "0722456789",
+    city: "Kigali",
+    district: "Kicukiro",
+    health: "Asthma",
+  },
+  {
+    id: "p3",
+    student: "Eric Niyonzima",
+    grade: "S1",
+    parentPhone: "0733987654",
+    city: "Huye",
+    district: "Ngoma",
+    health: "Good",
+  },
+];
+
 const mockJourneys: Journey[] = [
   {
     id: "1",
@@ -113,9 +154,12 @@ export default function App(): JSX.Element {
     "all"
   );
   const [search, setSearch] = useState("");
+  const [showJourneyList, setShowJourneyList] = useState(true);
   const [selectedJourney, setSelectedJourney] = useState<Journey | null>(null);
   const [showLargeMap, setShowLargeMap] = useState(false);
   const [journeys, setJourneys] = useState<Journey[]>(mockJourneys);
+  const [passengersJourney, setPassengersJourney] = useState<Journey | null>(null);
+
 
   const filteredJourneys = useMemo(() => {
   return journeys.filter((j) => {
@@ -165,16 +209,16 @@ export default function App(): JSX.Element {
 
   return (
     <div className="min-h-screen">
-      <main className="max-w-full mx-auto px-4 sm:px-6 lg:px-4 py-3">
+      <main className="max-w-full mx-auto ">
         {/* Top: search + tabs */}
-<div className="overflow-hidden mb-4">
-  <div className="border-b border-gray-200">
+<div className="overflow-hidden   bg-white ">
+  <div className="">
     <nav className="flex -mb-px">
       <button
         onClick={() => setActiveTab("all")}
         className={`px-6 py-4 border-b-2 text-[14px] transition-colors ${
           activeTab === "all"
-            ? "border-blue-800 text-blue-800"
+            ? "border-blue-800  text-blue-800  font-semibold"
             : "border-transparent text-black hover:text-gray-800 hover:border-gray-300"
         }`}
       >
@@ -185,7 +229,7 @@ export default function App(): JSX.Element {
         onClick={() => setActiveTab("pending")}
         className={`px-6 py-4 border-b-2 text-[14px] transition-colors ${
           activeTab === "pending"
-            ? "border-blue-600 text-blue-600"
+            ? "border-blue-800  text-blue-800  font-semibold"
             : "border-transparent text-black hover:text-gray-800 hover:border-gray-300"
         }`}
       >
@@ -196,7 +240,7 @@ export default function App(): JSX.Element {
         onClick={() => setActiveTab("completed")}
         className={`px-6 py-4 border-b-2 text-[14px] transition-colors ${
           activeTab === "completed"
-            ? "border-blue-600 text-blue-600"
+            ? "border-blue-800  text-blue-800  font-semibold"
             : "border-transparent text-black hover:text-gray-800 hover:border-gray-300"
         }`}
       >
@@ -208,53 +252,77 @@ export default function App(): JSX.Element {
 
 
         {/* Main area: cards left, map right */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          {/* LEFT: cards (scrollable) */}
-          <div className="lg:col-span-2 mt-5 overflow-y-auto max-h-[66vh] space-y-4 pr-3">
-            {filteredJourneys.length === 0 ? (
-              <div className="bg-white p-6 rounded shadow text-center text-gray-500">
-                No journeys found
-              </div>
-            ) : (
-              filteredJourneys.map((journey) => (
-                <div
-                  key={journey.id}
-                  onClick={() => setSelectedJourney(journey)}
-                  className={`cursor-pointer ${selectedJourney?.id === journey.id ? "border border-blue-800 shadow-xl rounded-lg" : ""}`}
-                >
-                  <JourneyCard journey={journey} />
-                </div>
-              ))
-            )}
-          </div>
+{/* Fullscreen Map Area */}
+<div className="relative h-[calc(100vh-120px)] w-full overflow-hidden ">
+  
+  {/* MAP (background layer) */}
+  <div className="absolute inset-0 z-0">
+    <JourneyMap
+      journeys={filteredJourneys}
+      selectedJourney={selectedJourney}
+      onSelect={(j) => {
+        setSelectedJourney(j);
+        setPassengersJourney(j); // 🔥 auto-open passengers when bus clicked
+      }}
+    />
 
-          {/* RIGHT: map (reduced size so cards don't overflow) */}
-          <div className="lg:col-span-3 space-y-2">
-            <div className="relative rounded-lg overflow-hidden  bg-white">
-              {/* small toolbar on top right */}
-              <div className="absolute right-3 top-3 z-20 flex gap-2">
-                <button
-                  onClick={() => setShowLargeMap(true)}
-                  className="px-3 py-1 bg-blue-700 text-white rounded text-sm flex items-center gap-2"
-                >
-                  <Bus className="w-4 h-4" />
-                  View larger map
-                </button>
-              </div>
+{/* LEFT FLOATING JOURNEY LIST */}
+    {/* Hide button */}
+    <button
+      onClick={() => setShowJourneyList(false)}
+      className={`absolute ${showJourneyList == true ?  "block" :"hidden"} left-[353px] top-4 z-30 w-7 h-7 rounded-full bg-blue-800 flex items-center justify-center cursor-pointer hover:bg-blue-700 transition`}>
+      <ChevronLeft className="text-white" size={16} />
+    </button>
+<div
+  className={`absolute top-4 bottom-4 z-20 w-[360px] transition-all duration-500 ease-in-out
+    ${showJourneyList ? "left-4" : "-left-[380px]"}`}
+>
+  <div
+    className="h-full overflow-y-auto space-y-3 pr-2
+    bg-transparent backdrop-blur-xl rounded-xl border p-3 border-white/40
+    shadow-lg relative"
+  >
 
-              {/* Map container with limited height to prevent overflow */}
-              <div className="h-[420px]">
-                <JourneyMap
-                  journeys={filteredJourneys}
-                  selectedJourney={selectedJourney}
-                  onSelect={(j) => {
-                    setSelectedJourney(j);
-                    // optionally adjust map zoom/center - JourneyMap can handle if needed
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+
+    {filteredJourneys.length === 0 ? (
+      <div className="p-6 text-center text-gray-700 text-sm">
+        No journeys found
+      </div>
+    ) : (
+      filteredJourneys.map((journey) => (
+        <div
+          key={journey.id}
+          onClick={() => {
+            setSelectedJourney(journey);
+          }}
+          className={`cursor-pointer transition-all ${
+            selectedJourney?.id === journey.id
+              ? "border border-blue-800 shadow-lg"
+              : ""
+          }`}
+        >
+          <JourneyCard
+            onViewPassengers={() => setPassengersJourney(journey)}
+            journey={journey}
+          />
+        </div>
+      ))
+    )}
+  </div>
+</div>
+{/* Show journey list button */}
+{!showJourneyList && (
+  <button
+    onClick={() => setShowJourneyList(true)}
+    className="absolute left-4 top-6 z-30
+    w-9 h-9 rounded-full bg-blue-800 shadow-lg
+    flex items-center justify-center cursor-pointer
+    hover:bg-blue-700 transition-all duration-300"
+  >
+    <ChevronRight className="text-white" size={18} />
+  </button>
+)}
+  </div>
         </div>
       </main>
 
@@ -419,6 +487,69 @@ export default function App(): JSX.Element {
     </div>
   </div>
 )}
+
+{passengersJourney && (
+  <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+    <div className="bg-white w-full max-w-5xl rounded-xl shadow-xl overflow-hidden">
+      
+      {/* Header */}
+      <div className="flex justify-between items-center p-5 ">
+        <div>
+          <h3 className="text-[16px] font-semibold text-gray-900">
+            Passengers : {passengersJourney.from} → {passengersJourney.destination}
+          </h3>
+        <div className="flex">
+          <p className="text-[14px] text-gray-700">
+            Bus {passengersJourney.busPlate}
+          </p>
+          <p className="text-[14px] ml-5 text-gray-700">
+            Driver phone : +250793216191
+          </p>
+          </div>
+        </div>
+        <button
+          onClick={() => setPassengersJourney(null)}
+          className="text-2xl text-gray-500 hover:text-red-600"
+        >
+          ×
+        </button>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto  p-5">
+        <table className="min-w-full border border-gray-200 rounded-lg">
+          <thead className="">
+            <tr className="text-left text-[14px] text-black font-normal">
+              <th className="px-4 py-3">Student</th>
+              <th className="px-4 py-3">Grade</th>
+              <th className="px-4 py-3">Parent Phone</th>
+              <th className="px-4 py-3">City</th>
+              <th className="px-4 py-3">District</th>
+              <th className="px-4 py-3">Health</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mockPassengers.map((p) => (
+              <tr key={p.id} className="border-t text-sm">
+                <td className="px-4 py-3 font-medium text-gray-900">{p.student}</td>
+                <td className="px-4 py-3">{p.grade}</td>
+                <td className="px-4 py-3">{p.parentPhone}</td>
+                <td className="px-4 py-3">{p.city}</td>
+                <td className="px-4 py-3">{p.district}</td>
+                <td className="px-4 py-3">
+                  <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">
+                    {p.health}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { FiDownload } from "react-icons/fi";
 
 type BookingStatus = "Paid" | "Pending" | "Cancelled";
 type JourneyStatus = "completed" | "pending";
-type AttendanceStatus = "on road" | "arrived";
+type AttendanceStatus = "on road" | "arrived at bus stop";
 
 const years = [2024, 2025];
 const months = [
@@ -13,7 +13,6 @@ const months = [
 
 const tabs = [
   "Bookings",
-  "Payments",
   "Student Attendance",
   "Journey Summary",
   "Incident Reports",
@@ -22,8 +21,8 @@ const tabs = [
 /* ---------------- MOCK DATA ---------------- */
 
 const mockBookings = [
-  { date: "2025-01-12", status: "Confirmed", payment: "Paid", tickets: 2 },
-  { date: "2025-01-20", status: "Confirmed", payment: "Pending", tickets: 1 },
+  { date: "2025-01-12", status: "Confirmed", payment: "Paid", tickets: 205 },
+  { date: "2025-01-20", status: "Confirmed", payment: "Pending", tickets: 130 },
 ];
 
 const mockStudents = [
@@ -35,7 +34,7 @@ const mockStudents = [
     district: "Gasabo",
     health: "Good",
     arrived: true,
-    status: "arrived" as AttendanceStatus,
+    status: "arrived at bus stop" as AttendanceStatus,
   },
   {
     name: "Aline Uwase",
@@ -52,10 +51,21 @@ const mockStudents = [
 const mockJourneys = [
   {
     id: "J001",
+    date:"2025/10/12",
     bus: "RAB 234 A",
     route: "Kigali → Huye",
     passengers: 45,
     departure: "08:00",
+    eta: "12:30",
+    status: "completed" as JourneyStatus,
+  },
+    {
+    id: "J002",
+    date:"2025/11/12",
+    bus: "RAB 234 B",
+    route: "Kigali → Nyamagabe",
+    passengers: 25,
+    departure: "07:00",
     eta: "12:30",
     status: "completed" as JourneyStatus,
   },
@@ -97,7 +107,7 @@ export default function ReportsPage() {
 
         <button
           onClick={downloadReport}
-          className="ml-auto flex items-center gap-2 px-4 py-2 bg-black text-white rounded"
+          className="ml-auto flex items-center gap-2 px-4 py-2 bg-blue-800 text-[14px] text-white rounded"
         >
           <FiDownload /> Download
         </button>
@@ -106,11 +116,11 @@ export default function ReportsPage() {
       {/* Tabs */}
       <div className="flex gap-6 border-b mb-6">
         {tabs.map(t => (
-          <button
+          <button 
             key={t}
             onClick={() => setActiveTab(t)}
             className={`pb-3 ${
-              activeTab === t ? "border-b-2 border-black font-medium" : "text-gray-500"
+              activeTab === t ? "border-b-2 border-blue-800 text-blue-800 font-medium" : "text-gray-500"
             }`}
           >
             {t}
@@ -121,24 +131,14 @@ export default function ReportsPage() {
       {/* CONTENT */}
       {activeTab === "Bookings" && (
         <Table
-          headers={["Date", "Status", "Payment", "Tickets"]}
+          headers={["Date", "Status", "Payment", "Passengers"]}
           rows={mockBookings.map(b => [b.date, b.status, b.payment, b.tickets])}
-        />
-      )}
-
-      {activeTab === "Payments" && (
-        <Table
-          headers={["Payment Status", "Count"]}
-          rows={[
-            ["Paid", mockBookings.filter(b => b.payment === "Paid").length],
-            ["Unpaid", mockBookings.filter(b => b.payment !== "Paid").length],
-          ]}
         />
       )}
 
       {activeTab === "Student Attendance" && (
         <Table
-          headers={["Name","Grade","Phone","City","District","Health","Arrived","Status"]}
+          headers={["Name","Grade","Phone","City","District","Health","Arrived at school","Status"]}
           rows={mockStudents.map(s => [
             s.name,
             s.grade,
@@ -146,7 +146,7 @@ export default function ReportsPage() {
             s.city,
             s.district,
             s.health,
-            <input type="checkbox" checked={s.arrived} readOnly />,
+            <input type="checkbox" className="w-4 h-4 rounded-lg accent-green-600 checked:cursor-not-allowed cursor-pointer"/>,
             s.status,
           ])}
         />
@@ -154,8 +154,9 @@ export default function ReportsPage() {
 
       {activeTab === "Journey Summary" && (
         <Table
-          headers={["Bus","Route","Passengers","Departure","ETA","Status"]}
+          headers={["Date","Bus","Route","Passengers","Departure","ETA","Status"]}
           rows={mockJourneys.map(j => [
+            j.date,
             j.bus,
             j.route,
             j.passengers,
