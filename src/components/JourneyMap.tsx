@@ -34,7 +34,7 @@ const routesFeature = {
         initialViewState={{
           longitude: 30.0619,
           latitude: -1.9441,
-          zoom: 8.5,
+          zoom: 10,
         }}
         style={{ width: "100%", height: "100%" }}
         mapStyle="https://tiles.stadiamaps.com/styles/alidade_smooth.json"
@@ -67,7 +67,7 @@ const routesFeature = {
 >
 
               <div className={`cursor-pointer relative transform ${selectedJourney?.id === j.id ? "scale-125" : ""}`}>
-                <div className="absolute inset-0 rounded-full bg-blue-400 opacity-30 animate-ping" />
+                <div className="absolute inset-0 rounded-full bg-orange-500 opacity-30 animate-ping" />
                 <Lottie  animationData={data} className={`w-[40px] h-[40px]`}  loop={true} />
               </div>
             </Marker>

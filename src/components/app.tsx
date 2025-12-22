@@ -154,7 +154,7 @@ export default function App(): JSX.Element {
     "all"
   );
   const [search, setSearch] = useState("");
-  const [showJourneyList, setShowJourneyList] = useState(true);
+  const [showJourneyList, setShowJourneyList] = useState(false);
   const [selectedJourney, setSelectedJourney] = useState<Journey | null>(null);
   const [showLargeMap, setShowLargeMap] = useState(false);
   const [journeys, setJourneys] = useState<Journey[]>(mockJourneys);
