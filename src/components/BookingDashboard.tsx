@@ -5,6 +5,7 @@ import { CreditCard, CheckCircle } from 'lucide-react';
 import { PaymentModal } from './PaymentModal';
 
 export interface Booking {
+  status: string;
   id: string;
   destination: string;
   checkIn: string;
@@ -23,6 +24,7 @@ const mockBookings: Booking[] = [
     agency: 'Volcano',
     passengers: 2,
     isPaid: false,
+    status: ''
   },
   {
     id: '2',
@@ -32,6 +34,7 @@ const mockBookings: Booking[] = [
     agency: 'Horizon',
     passengers: 1,
     isPaid: false,
+    status: ''
   },
   {
     id: '3',
@@ -41,6 +44,7 @@ const mockBookings: Booking[] = [
     agency: 'Horizon',
     passengers: 3,
     isPaid: false,
+    status: ''
   },
   {
     id: '4',
@@ -50,6 +54,7 @@ const mockBookings: Booking[] = [
     agency: 'Volcano',
     passengers: 2,
     isPaid: false,
+    status: ''
   },
   {
     id: '5',
@@ -59,6 +64,7 @@ const mockBookings: Booking[] = [
     agency: 'Horizon',
     passengers: 2,
     isPaid: false,
+    status: ''
   },
   {
     id: '6',
@@ -68,6 +74,7 @@ const mockBookings: Booking[] = [
     agency: 'Horizon',
     passengers: 2,
     isPaid: true,
+    status: ''
   },
   {
     id: '7',
@@ -77,6 +84,7 @@ const mockBookings: Booking[] = [
     agency: 'Volcano',
     passengers: 1,
     isPaid: true,
+    status: ''
   },
 ];
 

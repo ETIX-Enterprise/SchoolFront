@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BookingDashboard } from '../components/BookingDashboard';
 
 export default function Payments() {

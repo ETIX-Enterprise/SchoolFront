@@ -27,3 +27,6 @@ function LineCharts({data}:{data:[] | any}){
 
 
 export { LineCharts}
+
+
+
