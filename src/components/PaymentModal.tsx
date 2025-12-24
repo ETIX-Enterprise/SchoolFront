@@ -1,8 +1,6 @@
 // PaymentModal.tsx
 import { X, Phone, DollarSign } from "lucide-react";
 import { useState } from "react";
-import { BsCash } from "react-icons/bs";
-
 interface PaymentModalProps {
   isOpen: boolean;
   amount: number;
