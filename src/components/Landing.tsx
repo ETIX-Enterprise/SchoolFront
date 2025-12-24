@@ -31,9 +31,9 @@ function Landing() {
       <div className="text-center max-w-md mx-auto">
         {/* Logo / Title */}
         <div className="mb-10">
-          <h1 className="text-4xl font-bold text-white mb-3">Vuduka</h1>
+          <h1 className="text-[20px] font-semibold text-white mb-1">Vuduka</h1>
           <div className="w-20 h-1 bg-blue-300 mx-auto mb-4 rounded-full"></div>
-          <p className="text-xl font-semibold text-white mb-2">School Management</p>
+          <p className="text-[25px] font-bold text-white mb-2">GERAYO AMAHORO TODAY</p>
           <p className="text-blue-100 text-sm">
             Streamlining educational journeys so you can focus on what matters most
           </p>
