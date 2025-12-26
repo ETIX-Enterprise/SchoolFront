@@ -16,7 +16,7 @@ function LayOut() {
     if(isSmallScreen == true){
       setIsNavOpen(false);
     }else{
-      setIsNavOpen(true)
+      return;
     }
   } ,[isSmallScreen])
   
@@ -34,20 +34,20 @@ function LayOut() {
     {'id':3  , 'name' : 'Support' , 'path':'/Dashboard/support' , 'icon':<UserCircle className='w-5 h-5' /> },
   ]
   
-  const [isNavOpen, setIsNavOpen] = useState(true)
+  const [isNavOpen, setIsNavOpen] = useState(false);
   
   const handleNav = useCallback(() => {
     setIsNavOpen(!isNavOpen)
   }, [isNavOpen])
   
   return (
-    <div className='w-full h-screen flex bg-gray-50'>
+    <div className='w-full h-screen flex '>
       {isNavOpen ? (
         <aside className='w-[243px] p-5 overflow-auto sm:h-screen h-[832px] bg-white border-r border-gray-200 shadow-lg transition-all duration-300'>
           <header className='p-2 w-full flex justify-between items-center mb-6'>
             <span className='flex items-center'>
               <img src={logo} className='w-7 mr-2 h-7 drop-shadow-sm' alt="Logo" />
-              <h2 className='text-blue-700 font-bold text-[17px] tracking-tight bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent'>
+              <h2 className=' font-bold text-[17px] tracking-tight bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent'>
                 VUDUKA
               </h2>
             </span>
@@ -127,22 +127,62 @@ function LayOut() {
             </div>
           </div>
         </aside>
-      ) : (
-        <aside className='w-[60px] p-5 sm:h-screen h-[832px] bg-gradient-to-b from-white to-gray-50 border-r border-gray-200 shadow-sm'>
-          <header className='w-full flex justify-center mb-6'>
-            <span 
-              onClick={handleNav} 
-              className='cursor-pointer p-2 rounded-xl flex items-center justify-center hover:bg-blue-50 transition-all duration-200 active:scale-95'
-            >
-              <BsArrow90DegRight className='w-5 h-5 text-gray-500 hover:text-blue-700 transition-colors' />
-            </span>
-          </header>
-        </aside>
-      )}
+) : (
+  <aside className='w-[60px] p-5 sm:h-screen h-[832px] bg-gradient-to-b from-white to-gray-50 border-r border-gray-200 shadow-sm flex flex-col items-center'>
+    
+    {/* Toggle button */}
+    <header className='w-full flex justify-center mb-6'>
+      <span 
+        onClick={handleNav} 
+        className='cursor-pointer p-2 rounded-xl flex items-center justify-center hover:bg-blue-50 transition-all duration-200 active:scale-95'
+      >
+        <BsArrow90DegRight className='w-5 h-5 text-gray-500 hover:text-blue-700 transition-colors' />
+      </span>
+    </header>
+
+    {/* ICON NAV */}
+    <div className="flex flex-col items-center space-y-3 mt-4">
+      {navigations.map((nav) => (
+        <NavLink
+          key={nav.id + nav.path}
+          to={nav.path}
+          title={nav.name}
+          className={({ isActive }) =>
+            `w-8 h-8 flex items-center justify-center rounded-lg transition-all duration-200 ${
+              isActive
+                ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`
+          }
+        >
+          {nav.icon}
+        </NavLink>
+      ))}
+    </div>
+        <div className="flex flex-col items-center space-y-3 mt-20">
+      {navigations2.map((nav) => (
+        <NavLink
+          key={nav.id + nav.path}
+          to={nav.path}
+          title={nav.name}
+          className={({ isActive }) =>
+            `w-8 h-8 flex items-center justify-center rounded-lg transition-all duration-200 ${
+              isActive
+                ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
+                : 'text-gray-600 hover:bg-gray-100'
+            }`
+          }
+        >
+          {nav.icon}
+        </NavLink>
+      ))}
+    </div>
+  </aside>
+)}
 
        <main className="flex-1 flex flex-col overflow-hidden">
          <Header isNavOpen={isNavOpen} />
-         <div className="flex-1 px-4 py-3 h-full overflow-auto bg-gradient-to-b from-gray-50 to-white">
+         <div className="flex-1 px-4 py-1 h-full overflow-auto">
            <Outlet />
          </div>
        </main>

@@ -65,7 +65,7 @@ const Header = React.memo(({ isNavOpen, onMenuToggle }: HeaderProps) => {
         bg-white/95 backdrop-blur-sm
         border-b border-gray-200/60
         transition-all duration-300
-        shadow-sm
+        
       `}
     >
       <div className="h-16 px-4 md:px-6 flex items-center justify-between gap-3">

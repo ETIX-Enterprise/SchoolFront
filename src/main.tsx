@@ -12,11 +12,11 @@ import Login from './Auth/Login.tsx'
 import Home from './Tabs/Home.tsx'
 import Students from './Tabs/Students.tsx'
 import Bookings from './Tabs/Bookings.tsx'
-import Payments from './Tabs/Payments.tsx'
 import ReportsPage from './Tabs/Reports.tsx'
 import Tracking from './Tabs/Tracking.tsx'
 import NotificationPage from './Tabs/Notifications.tsx'
 import Support from './Tabs/Support.tsx'
+import PaymentsDashboard from './Tabs/Payments.tsx'
 
 
 
@@ -35,7 +35,7 @@ const route = createBrowserRouter(
     <Route  path='overview' element={<Home />} />
     <Route path='students' element={<Students />} />
     <Route path='booking' element={<Bookings />} />
-    <Route path='payment' element={<Payments />} />
+    <Route path='payment' element={<PaymentsDashboard />} />
     <Route path='reports' element={<ReportsPage />} />
     <Route path='notifications' element={<NotificationPage />} />
     <Route path='support' element={<Support />} />
