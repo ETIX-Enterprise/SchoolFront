@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
-import { DownloadCloud, UploadCloud, Plus, X, FileUp, CalendarPlus, UserPlus, ChevronDown, ChevronLeft, ChevronRight, List } from 'lucide-react'
+import { DownloadCloud, UploadCloud, Plus, X, FileUp, CalendarPlus, UserPlus, ChevronDown, ChevronLeft, ChevronRight, List, Calendar, ArrowRight, Bus, BusFront } from 'lucide-react'
 import StudentTable from '../components/studentTable'
+import { BsCurrencyBitcoin } from 'react-icons/bs'
 
 // ---------------- TYPES ----------------
 type Student = {
@@ -225,7 +226,7 @@ function Students() {
       <div className="mb-10">
         <div className="flex flex-col border-b border-gray-300 pb-3 sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
           <div>
-            <h1 className="text-[18px] font-semibold text-black">Students Management</h1>
+            <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">Students Management</h1>
             <p className="text-gray-600  text-[14px]">
               Manage students across academic years
             </p>
@@ -251,7 +252,7 @@ function Students() {
         </div>
 
         {/* Stats Cards */}
-        <div className="flex justify-between flex-wrap gap-6">
+        <div className="px-6 flex justify-between">
 
           {/* Year Carousel Card */}
           <div className="bg-gradient-to-r from-blue-700 to-blue-800 w-[450px] h-[230px] rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden">
@@ -335,6 +336,28 @@ function Students() {
               </div>
             )}
           </div>
+                         <div className="bg-gradient-to-r h-[200px] from-green-700 to-gray-800 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-[12px] text-blue-100">Total students active journeys</p>
+                <p className="text-3xl font-bold mt-2">6</p>
+              </div>
+              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <BusFront className="w-7 h-7 text-white" />
+              </div>
+            </div>
+            <div className="pt-3 border-t flex justify-between border-white/20">
+              <p className="text-[13px] text-blue-100">
+                Students on active bus routes <br /> click the button to manage
+              </p>
+              <div  className="rounded-lg px-4 text-[13px] py-2 cursor-pointer bg-gray-100 flex items-center justify-center text-black hover:bg-gray-300">
+                <p>View status</p>
+                <ArrowRight className="w-4 h-4 ml-2 mt-[2px]" />
+              </div>
+            </div>
+          </div>
+        </div>
        </div>
       </div>
 

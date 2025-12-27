@@ -43,7 +43,7 @@ function LayOut() {
   return (
     <div className='w-full h-screen flex '>
       {isNavOpen ? (
-        <aside className='w-[243px] p-5 overflow-auto sm:h-screen h-[832px] bg-white border-r border-gray-200 shadow-lg transition-all duration-300'>
+        <aside className='w-[243px] p-5 overflow-auto sm:h-screen h-[832px] bg-gradient-to-b from-zinc-50 to-zinc-100  transition-all duration-300'>
           <header className='p-2 w-full flex justify-between items-center mb-6'>
             <span className='flex items-center'>
               <img src={logo} className='w-7 mr-2 h-7 drop-shadow-sm' alt="Logo" />
@@ -128,7 +128,7 @@ function LayOut() {
           </div>
         </aside>
 ) : (
-  <aside className='w-[60px] p-5 sm:h-screen h-[832px] bg-gradient-to-b from-white to-gray-50 border-r border-gray-200 shadow-sm flex flex-col items-center'>
+  <aside className='w-[60px] p-5 sm:h-screen h-[832px] bg-gradient-to-b from-zinc-50 to-zinc-100  flex flex-col items-center'>
     
     {/* Toggle button */}
     <header className='w-full flex justify-center mb-6'>

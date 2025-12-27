@@ -15,8 +15,10 @@ import {
   Eye,
   X,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ArrowRight
 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 // Mock data for demonstration
 const mockBookings = [
@@ -80,6 +82,8 @@ function Bookings() {
   const [cardIndex, setCardIndex] = useState(0)
   const [isSliding, setIsSliding] = useState(false)
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right')
+
+  const navigate = useNavigate()
 
   const tabs = [
     { id: 'all', label: 'All', count: 12 },
@@ -146,7 +150,7 @@ function Bookings() {
       {/* Header */}
       <header className="w-full px-6 py-4 bg-white border-b border-gray-200 flex justify-between items-center">
         <div>
-          <h1 className="text-[16px] font-semibold text-gray-900">Transport Bookings</h1>
+          <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">Transport Bookings</h1>
           <p className="text-gray-600 text-[14px]">Manage and track student transportation schedules</p>
         </div>
 
@@ -167,7 +171,7 @@ function Bookings() {
       </header>
 
       {/* Stats Carousel Card */}
-      <div className="px-6">
+      <div className="px-6 flex justify-between">
         <div className="bg-gradient-to-r h-[200px] from-blue-700 to-blue-800 w-full max-w-md rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
           <div className={`transition-all duration-300 ${isSliding ? `opacity-0 ${slideDirection === 'left' ? '-translate-x-8' : 'translate-x-8'}` : 'opacity-100 translate-x-0'}`}>
             <div className="flex items-center justify-between mb-4">
@@ -242,6 +246,29 @@ function Bookings() {
               </div>
             </>
           )}
+        </div>
+
+        <div className="bg-gradient-to-r h-[200px] from-zinc-700 to-zinc-800 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-[12px] text-blue-100">Total confirmed bookings</p>
+                <p className="text-3xl font-bold mt-2">6</p>
+              </div>
+              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <CurrentIcon className="w-7 h-7 text-white" />
+              </div>
+            </div>
+            <div className="pt-3 border-t flex justify-between border-white/20">
+              <p className="text-[13px] text-blue-100">
+                Confirmed bookings ready for upcoming <br /> routes
+              </p>
+              <div onClick={()=> navigate("/Dashboard/payment")} className="rounded-lg px-4 text-[13px] py-2 cursor-pointer bg-gray-100 flex items-center justify-center text-black hover:bg-gray-300">
+                <p>Pay bookings</p>
+                <ArrowRight className="w-4 h-4 ml-2 mt-[2px]" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

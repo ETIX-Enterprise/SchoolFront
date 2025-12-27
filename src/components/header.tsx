@@ -62,8 +62,7 @@ const Header = React.memo(({ isNavOpen, onMenuToggle }: HeaderProps) => {
     <header
       className={`
         sticky top-0 z-50
-        bg-white/95 backdrop-blur-sm
-        border-b border-gray-200/60
+        bg-zinc-50  backdrop-blur-sm
         transition-all duration-300
         
       `}
@@ -86,8 +85,8 @@ const Header = React.memo(({ isNavOpen, onMenuToggle }: HeaderProps) => {
               relative flex items-center gap-3 px-4 py-2.5 
               rounded-xl border transition-all duration-300
               ${searchFocused
-                ? 'bg-white border-blue-500 shadow-lg shadow-blue-500/10'
-                : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50/50'
+                ? 'bg-white border-blue-600 shadow-lg shadow-blue-500/10'
+                : 'border-blue-400 hover:border-blue-500 hover:bg-blue-50/50'
               }
             `}
           >
@@ -109,14 +108,14 @@ const Header = React.memo(({ isNavOpen, onMenuToggle }: HeaderProps) => {
             {searchValue ? (
               <button
                 onClick={clearSearch}
-                className="p-1.5 rounded-lg hover:bg-gray-200/50 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-blue-200/80 transition-colors"
               >
-                <X className="w-3.5 h-3.5 text-gray-500" />
+                <X className="w-3.5 h-3.5 text-blue-500" />
               </button>
             ) : (
-              <div className="hidden sm:flex items-center gap-1.5 text-xs text-gray-400">
-                <kbd className="px-1.5 py-0.5 bg-gray-100 rounded border border-gray-300">⌘</kbd>
-                <kbd className="px-1.5 py-0.5 bg-gray-100 rounded border border-gray-300">K</kbd>
+              <div className="hidden sm:flex items-center gap-1.5 text-xs text-white">
+                <kbd className="px-1.5 py-0.5 bg-blue-700 rounded border border-gray-300">⌘</kbd>
+                <kbd className="px-1.5 py-0.5 bg-blue-700 rounded border border-gray-300">K</kbd>
               </div>
             )}
             
@@ -138,7 +137,7 @@ const Header = React.memo(({ isNavOpen, onMenuToggle }: HeaderProps) => {
                 {/* Notifications Dropdown */}
                 <div className="relative">
                   <IconButton
-                    icon={<Bell className="w-4 h-4" />}
+                    icon={<Bell className="w-4 h-4 text-blue-700" />}
                     tooltip="Notifications"
                     onClick={handleNotificationClick}
                     active={showNotifications}
@@ -188,7 +187,7 @@ const Header = React.memo(({ isNavOpen, onMenuToggle }: HeaderProps) => {
                 </div>
 
                 <IconButton 
-                  icon={<Settings className="w-4 h-4" />} 
+                  icon={<Settings className="w-4 h-4 text-blue-700" />} 
                   tooltip="Settings"
                 />
 

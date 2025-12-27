@@ -204,6 +204,63 @@ function Home() {
 
       {/* Main Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                {/* Right Column - Pickup Schedule */}
+        <div className="lg:col-span-2">
+          <div className="bg-white rounded-lg p-6 shadow-md">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h3 className="text-[16px] font-semibold text-gray-900">Pickup Schedule</h3>
+                <p className="text-[14px] text-gray-600 mt-1">Today's transportation schedule</p>
+              </div>
+              <button
+                onClick={() => navigate('/Dashboard/booking')}
+                className="px-4 py-2 text-[14px] font-medium rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all flex items-center gap-2"
+              >
+                View Details
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Date</th>
+                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Route</th>
+                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Pickup Time</th>
+                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Students</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pickupSchedule.map((schedule) => (
+                    <tr
+                      key={schedule.id}
+                      className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                    >
+                      <td className="py-3 px-4 text-[14px] text-gray-900">{schedule.date}</td>
+                      <td className="py-3 px-4 text-[14px] text-gray-600">{schedule.route}</td>
+                      <td className="py-3 px-4 text-[14px] text-gray-600">{schedule.pickupTime}</td>
+                      <td className="py-3 px-4">
+                        <div className="flex  gap-2">
+                          <span className="text-[14px] font-semibold text-gray-900">
+                            {schedule.studentCount}
+                          </span>
+                          <button
+                            onClick={() => handleViewStudents(schedule.students)}
+                            className="inline-flex items-center gap-1 px-3 py-1 text-[12px] font-medium text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors w-fit"
+                          >
+                            <Eye className="w-3 h-3" />
+                            View
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
         {/* Left Column - Overview + Upload */}
         <div className="space-y-6">
           {/* Registered Students Card - Compact */}
@@ -335,64 +392,6 @@ function Home() {
                   </p>
                 </div>
               )}
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column - Pickup Schedule */}
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg p-6 shadow-md">
-            <div className="flex justify-between items-center mb-4">
-              <div>
-                <h3 className="text-[16px] font-semibold text-gray-900">Pickup Schedule</h3>
-                <p className="text-[14px] text-gray-600 mt-1">Today's transportation schedule</p>
-              </div>
-              <button
-                onClick={() => navigate('/Dashboard/booking')}
-                className="px-4 py-2 text-[14px] font-medium rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all flex items-center gap-2"
-              >
-                View Details
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Date</th>
-                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Route</th>
-                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Pickup Time</th>
-                    <th className="text-left py-3 px-4 text-[14px] font-semibold text-gray-700">Students</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pickupSchedule.map((schedule) => (
-                    <tr
-                      key={schedule.id}
-                      className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="py-3 px-4 text-[14px] text-gray-900">{schedule.date}</td>
-                      <td className="py-3 px-4 text-[14px] text-gray-600">{schedule.route}</td>
-                      <td className="py-3 px-4 text-[14px] text-gray-600">{schedule.pickupTime}</td>
-                      <td className="py-3 px-4">
-                        <div className="flex flex-col gap-2">
-                          <span className="text-[14px] font-semibold text-gray-900">
-                            {schedule.studentCount}
-                          </span>
-                          <button
-                            onClick={() => handleViewStudents(schedule.students)}
-                            className="inline-flex items-center gap-1 px-3 py-1 text-[12px] font-medium text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors w-fit"
-                          >
-                            <Eye className="w-3 h-3" />
-                            View
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
