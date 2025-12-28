@@ -16,7 +16,8 @@ import {
   Eye,
   Activity,
   FileText,
-  AlertTriangle
+  AlertTriangle,
+  Signal
 } from 'lucide-react';
 
 type BookingStatus = "Paid" | "Pending" | "Cancelled";
@@ -146,7 +147,7 @@ export default function ReportsPage() {
   const pendingPayments = mockBookings.filter(b => b.payment === "Pending").length;
 
   const stats = [
-    { title: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}`, icon: DollarSign, color: 'from-blue-700 to-blue-800', desc: `${confirmedBookings} confirmed bookings` },
+    { title: 'Total Revenue', value: `RFW ${totalRevenue.toLocaleString()}`, icon: DollarSign, color: 'from-blue-700 to-blue-800', desc: `${confirmedBookings} confirmed bookings` },
     { title: 'Total Tickets', value: totalTickets.toString(), icon: FileText, color: 'from-green-600 to-green-700', desc: 'Tickets sold this period' },
     { title: 'Active Journeys', value: mockJourneys.length.toString(), icon: Bus, color: 'from-purple-600 to-purple-700', desc: 'Currently tracked routes' },
     { title: 'Pending Actions', value: pendingPayments.toString(), icon: Clock, color: 'from-orange-600 to-orange-700', desc: 'Requires attention' }
@@ -218,7 +219,7 @@ export default function ReportsPage() {
       </header>
 
       {/* Stats Carousel Card */}
-      <div className="px-6">
+      <div className="px-6 flex justify-between">
         <div className={`bg-gradient-to-r h-[200px] ${stats[cardIndex].color} w-full max-w-md rounded-xl p-5 text-white shadow-lg relative overflow-hidden`}>
           <div className={`transition-all duration-300 ${isSliding ? `opacity-0 ${slideDirection === 'left' ? '-translate-x-8' : 'translate-x-8'}` : 'opacity-100 translate-x-0'}`}>
             <div className="flex items-center justify-between mb-4">
@@ -288,6 +289,25 @@ export default function ReportsPage() {
             </>
           )}
         </div>
+                                         <div className="bg-gradient-to-r h-[200px] from-gray-100 to-zinc-100 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <p className="text-[12px] text-gray-800">Total bookings this term</p>
+                        <p className="text-3xl text-blue-700 font-bold mt-2">5</p>
+                      </div>
+                      <div className="w-14 h-14 bg-black/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                        <Signal className="w-7 h-7 text-black" />
+                      </div>
+                    </div>
+                    <div className="pt-3 border-t  text-center border-gray-400">
+                      <p className="text-[15px] text-gray-600">
+                        Downlod and view informations for <br /> more details
+                      </p>
+                      <span className='text-gray-600 text-[15px] text-center'>reservations</span>
+                    </div>
+                  </div>
+                </div>
       </div>
 
       {/* Main Content */}

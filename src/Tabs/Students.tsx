@@ -336,22 +336,22 @@ function Students() {
               </div>
             )}
           </div>
-                         <div className="bg-gradient-to-r h-[200px] from-green-700 to-gray-800 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+                         <div className="bg-gradient-to-r  from-gray-100 to-zinc-100 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>
-                <p className="text-[12px] text-blue-100">Total students active journeys</p>
-                <p className="text-3xl font-bold mt-2">6</p>
+                <p className="text-[12px] text-gray-700">Total students active journeys</p>
+                <p className="text-3xl text-blue-700 font-bold mt-2">6</p>
               </div>
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                <BusFront className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 bg-black/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <BusFront className="w-7 h-7 text-black" />
               </div>
             </div>
-            <div className="pt-3 border-t flex justify-between border-white/20">
-              <p className="text-[13px] text-blue-100">
+            <div className="pt-3 border-t flex justify-between pt-10 border-gray-400">
+              <p className="text-[13px] text-gray-600">
                 Students on active bus routes <br /> click the button to manage
               </p>
-              <div  className="rounded-lg px-4 text-[13px] py-2 cursor-pointer bg-gray-100 flex items-center justify-center text-black hover:bg-gray-300">
+              <div  className="rounded-lg px-4 text-[13px] py-2 cursor-pointer bg-gray-800 flex items-center justify-center text-white hover:bg-gray-900">
                 <p>View status</p>
                 <ArrowRight className="w-4 h-4 ml-2 mt-[2px]" />
               </div>

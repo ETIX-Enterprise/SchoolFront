@@ -248,22 +248,22 @@ function Bookings() {
           )}
         </div>
 
-        <div className="bg-gradient-to-r h-[200px] from-zinc-700 to-zinc-800 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+        <div className="bg-gradient-to-r h-[200px] from-gray-100 to-zinc-100 w-[450px] rounded-xl p-5 text-gray-700 shadow-lg relative overflow-hidden">
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>
-                <p className="text-[12px] text-blue-100">Total confirmed bookings</p>
-                <p className="text-3xl font-bold mt-2">6</p>
+                <p className="text-[12px] ">Total confirmed bookings</p>
+                <p className="text-3xl font-bold text-blue-700 mt-2">6</p>
               </div>
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                <CurrentIcon className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 bg-black/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <CurrentIcon className="w-7 h-7 text-black" />
               </div>
             </div>
-            <div className="pt-3 border-t flex justify-between border-white/20">
-              <p className="text-[13px] text-blue-100">
+            <div className=" border-t flex justify-between pt-5 border-gray-400">
+              <p className="text-[13px] text-gray-600">
                 Confirmed bookings ready for upcoming <br /> routes
               </p>
-              <div onClick={()=> navigate("/Dashboard/payment")} className="rounded-lg px-4 text-[13px] py-2 cursor-pointer bg-gray-100 flex items-center justify-center text-black hover:bg-gray-300">
+              <div onClick={()=> navigate("/Dashboard/payment")} className="rounded-lg px-4 text-[13px] py-2 cursor-pointer bg-gray-800 flex items-center justify-center text-white hover:bg-gray-900">
                 <p>Pay bookings</p>
                 <ArrowRight className="w-4 h-4 ml-2 mt-[2px]" />
               </div>

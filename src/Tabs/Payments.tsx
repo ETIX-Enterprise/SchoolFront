@@ -316,22 +316,22 @@ function PaymentsDashboard() {
             </>
           )}
         </div>
-                                 <div className="bg-gradient-to-r h-[200px] from-orange-700 to-zinc-800 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+                                 <div className="bg-gradient-to-r h-[200px] from-gray-100 to-zinc-100 w-[450px] rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>
-                <p className="text-[12px] text-blue-100">Total unpayed bookings</p>
-                <p className="text-3xl font-bold mt-2">10</p>
+                <p className="text-[12px] text-gray-800">Total unpayed bookings</p>
+                <p className="text-3xl text-blue-700 font-bold mt-2">10</p>
               </div>
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                <BsCashStack className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 bg-black/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <BsCashStack className="w-7 h-7 text-black" />
               </div>
             </div>
-            <div className="pt-3 border-t  text-center border-white/20">
-              <p className="text-[15px] text-blue-100">
+            <div className="pt-3 border-t  text-center border-gray-400">
+              <p className="text-[15px] text-gray-600">
                 Pay for unpayed bookings to confirm  
               </p>
-              <span className='text-white text-[15px] text-center'>reservations</span>
+              <span className='text-gray-600 text-[15px] text-center'>reservations</span>
             </div>
           </div>
         </div>
