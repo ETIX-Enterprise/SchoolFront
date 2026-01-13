@@ -226,7 +226,7 @@ function Students() {
       <div className="mb-10">
         <div className="flex flex-col border-b border-gray-300 pb-3 sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
           <div>
-            <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">Students Management</h1>
+            <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-green-900 bg-clip-text text-transparent">Students Management</h1>
             <p className="text-gray-600  text-[14px]">
               Manage students across academic years
             </p>
@@ -421,6 +421,9 @@ function Students() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="flex p-3">
+           <div className="px-5 py-2 rounded-xl bg-grad"></div>
         </div>
 
         {/* Table Container */}

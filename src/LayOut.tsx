@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { BiMenu } from 'react-icons/bi'
 import logo from "/Icona/logo.png"
 import { NavLink } from 'react-router-dom'
-import { BsArrow90DegRight, BsArrowRight } from 'react-icons/bs'
+import { BsArrow90DegRight, BsArrowRight, BsCashCoin } from 'react-icons/bs'
 import Header from './components/header' 
 import UseIsSmallScreen from './Hooks/UseIsSmallScreen'
 import { Outlet } from 'react-router-dom'
-import { AppWindow, Bell, BusFront, Signal, Ticket, UserCircle, Wallet } from 'lucide-react'
+import { AppWindow, Bell, BusFront, Signal, Ticket, TicketCheck, TicketCheckIcon, UserCircle, Wallet } from 'lucide-react'
 import { PiStudent } from 'react-icons/pi'
 
 function LayOut() {
@@ -23,9 +23,10 @@ function LayOut() {
   const navigations = [
     {'id':1 , 'name':'OVERVIEW' , 'path':'/Dashboard/overview' , 'icon' : <AppWindow className='w-5 h-5' /> },
     {'id':2 , 'name':'Students' , 'path':'/Dashboard/students' , 'icon' :  <PiStudent className='w-5 h-5' />},
-    {'id':3 , 'name':'Bookings' , 'path':'/Dashboard/booking' ,'icon' : <Ticket className='w-5 h-5' />} ,
-    {'id':4 , 'name':'Payments' , 'path':'/Dashboard/payment' , 'icon' : <Wallet className='w-5 h-5' />} ,
-    {'id':5 , 'name':'Reports' , 'path': '/Dashboard/reports' , 'icon' : <Signal className='w-5 h-5'/>}
+    {'id':3 , 'name':'Ticekts payments' , 'path':'/Dashboard/tickets' , 'icon' : <BsCashCoin className='w-5  h-5' />} ,
+    {'id':4 , 'name':'Bookings' , 'path':'/Dashboard/booking' ,'icon' : <Ticket className='w-5 h-5' />} ,
+    {'id':5 , 'name':'Payments' , 'path':'/Dashboard/payment' , 'icon' : <Wallet className='w-5 h-5' />} ,
+    {'id':6 , 'name':'Reports' , 'path': '/Dashboard/reports' , 'icon' : <Signal className='w-5 h-5'/>}
   ]
   
   const navigations2 = [
@@ -98,7 +99,7 @@ function LayOut() {
                       }`
                     }
                   >
-                    <span className='mr-3'>
+                    <span className='mr-3 '>
                       {nav.icon}
                     </span>    
                     {nav.name}

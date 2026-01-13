@@ -172,7 +172,7 @@ function Bookings() {
 
       {/* Stats Carousel Card */}
       <div className="px-6 flex justify-between">
-        <div className="bg-gradient-to-r h-[200px] from-blue-700 to-blue-800 w-full max-w-md rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
+        <div className="bg-gradient-to-r h-[200px] from-green-700 to-green-800 w-full max-w-md rounded-xl p-5 text-white shadow-lg relative overflow-hidden">
           <div className={`transition-all duration-300 ${isSliding ? `opacity-0 ${slideDirection === 'left' ? '-translate-x-8' : 'translate-x-8'}` : 'opacity-100 translate-x-0'}`}>
             <div className="flex items-center justify-between mb-4">
               <div>

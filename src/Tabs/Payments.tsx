@@ -136,8 +136,8 @@ function PaymentsDashboard() {
   const paymentRate = Math.round((paidTotal / totalRevenue) * 100);
 
   const stats = [
-    { title: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}`, icon: DollarSign, color: 'from-blue-700 to-blue-800', desc: 'All time payments' },
-    { title: 'Unpaid Amount', value: `$${unpaidTotal.toLocaleString()}`, icon: Clock, color: 'from-orange-600 to-orange-700', desc: 'Pending payments' },
+    { title: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}`, icon: DollarSign, color: 'from-orange-600 to-orange-800', desc: 'All time payments' },
+    { title: 'Unpaid Amount', value: `$${unpaidTotal.toLocaleString()}`, icon: Clock, color: 'from-red-600 to-red-700', desc: 'Pending payments' },
     { title: 'Paid Amount', value: `$${paidTotal.toLocaleString()}`, icon: CheckCircle, color: 'from-green-600 to-green-700', desc: 'Completed payments' },
     { title: 'Payment Rate', value: `${paymentRate}%`, icon: TrendingUp, color: 'from-purple-600 to-purple-700', desc: 'Collection efficiency' }
   ];
@@ -232,7 +232,7 @@ function PaymentsDashboard() {
       {/* Header */}
       <header className="w-full px-6 py-4 bg-white border-b border-gray-200 flex justify-between items-center">
         <div>
-          <h1 className="text-[16px] font-semibold text-gray-900">Payment Management</h1>
+          <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-orange-800 bg-clip-text text-transparent">Payment Management</h1>
           <p className="text-gray-600 text-[14px]">Track and manage transportation payments</p>
         </div>
 

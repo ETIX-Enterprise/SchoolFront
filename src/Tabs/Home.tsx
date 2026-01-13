@@ -183,7 +183,7 @@ function Home() {
       {/* Header */}
       <header className="w-full px-6 py-4 bg-white border-b border-gray-200 flex justify-between items-center">
           <div>
-            <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-blue-900 bg-clip-text text-transparent">Mubiligi Catholic School</h1>
+            <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-green-800 bg-clip-text text-transparent">Mubiligi Catholic School</h1>
             <p className="text-gray-600  text-[14px]">
               Manage students across academic years
             </p>
