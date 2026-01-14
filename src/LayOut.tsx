@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { BiMenu } from 'react-icons/bi'
 import logo from "/Icona/logo.png"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { BsArrow90DegRight, BsArrowRight, BsCashCoin } from 'react-icons/bs'
 import Header from './components/header' 
 import UseIsSmallScreen from './Hooks/UseIsSmallScreen'
@@ -11,6 +11,7 @@ import { PiStudent } from 'react-icons/pi'
 
 function LayOut() {
   const isSmallScreen = UseIsSmallScreen()
+  const currentPath = useLocation().pathname;
   
   useEffect(() =>{
     if(isSmallScreen == true){
@@ -183,7 +184,7 @@ function LayOut() {
 
        <main className="flex-1 flex flex-col overflow-hidden">
          <Header isNavOpen={isNavOpen} />
-         <div className="flex-1 px-4 py-1 h-full overflow-auto">
+         <div className={`flex-1 ${currentPath == '/Dashboard/tracking' ? "" : "px-4 py-1"} h-full overflow-auto`}>
            <Outlet />
          </div>
        </main>
