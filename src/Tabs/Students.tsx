@@ -21,6 +21,8 @@ type YearGroup = {
   students: Student[]
 }
 
+type Term = 'Term I' | 'Term II' | 'Term III'
+
 // ---------------- COMPONENT ----------------
 function Students() {
   const [years, setYears] = useState<YearGroup[]>([
@@ -65,12 +67,14 @@ function Students() {
 
   const [activeYear, setActiveYear] = useState(0)
   const [cardYearIndex, setCardYearIndex] = useState(0)
+  const [activeTerm, setActiveTerm] = useState<Term>('Term I')
   const [isSliding, setIsSliding] = useState(false)
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right')
   const [search, setSearch] = useState('')
   const [showUploadModal, setShowUploadModal] = useState(false)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const TERMS: Term[] = ['Term I', 'Term II', 'Term III']
 
   const RWANDA_CITIES = ['Kigali', 'Southern', 'Northern', 'Eastern', 'Western']
 
@@ -252,7 +256,7 @@ function Students() {
         </div>
 
         {/* Stats Cards */}
-        <div className="px-6 flex justify-between">
+        <div className=" flex justify-between">
 
           {/* Year Carousel Card */}
           <div className="bg-gradient-to-r from-blue-700 to-blue-800 w-[450px] h-[230px] rounded-xl p-4 shadow-lg border border-gray-100 relative overflow-hidden">
@@ -364,7 +368,7 @@ function Students() {
       {/* Main Content */}
       <div className="bg-white   overflow-hidden">
         {/* Toolbar */}
-        <div className="p-6 border-b border-gray-100">
+        <div className="py-6 px-2 border-b border-gray-100">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               {/* Year Tabs */}
@@ -423,7 +427,28 @@ function Students() {
           </div>
         </div>
         <div className="flex p-3">
-           <div className="px-5 py-2 rounded-xl bg-grad"></div>
+          
+              {/* Term Tabs */}
+              <div className="flex items-center gap-2">
+                {TERMS.map((term) => (
+                  <button
+                    key={term}
+                    onClick={() => setActiveTerm(term)}
+                    className={`px-4 py-2 rounded-lg text-[13px] font-medium whitespace-nowrap transition-all duration-200 ${
+                      term === activeTerm
+                        ? 'bg-blue-100 text-blue-700 border border-blue-300'
+                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                    }`}
+                  >
+                    {term}
+                    <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[11px] ${
+                      term === activeTerm ? 'bg-blue-200' : 'bg-gray-200'
+                    }`}>
+                      {0}
+                    </span>
+                  </button>
+                ))}
+              </div>
         </div>
 
         {/* Table Container */}

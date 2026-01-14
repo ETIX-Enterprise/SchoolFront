@@ -77,7 +77,7 @@ function LayOut() {
                     }`
                   }
                 >
-                  <span className={`mr-3 ${nav.id === 1 ? 'text-white' : ''}`}>
+                  <span className={`mr-3 `}>
                     {nav.icon}
                   </span>    
                   {nav.name}

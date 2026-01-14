@@ -180,27 +180,43 @@ function Home() {
 
   return (
     <div className='w-full flex-1 space-y-6 mb-10 h-full'>
-      {/* Header */}
-      <header className="w-full px-6 py-4 bg-white border-b border-gray-200 flex justify-between items-center">
-          <div>
-            <h1 className="text-[17px] font-semibold  tracking-tight bg-gradient-to-r from-blue-700 to-green-800 bg-clip-text text-transparent">Mubiligi Catholic School</h1>
-            <p className="text-gray-600  text-[14px]">
-              Manage students across academic years
-            </p>
-          </div>
+{/* Header */}
+<header className="w-full px-6 py-4 bg-white border-b border-gray-200 flex justify-between items-center">
+  <div>
+    <h1 className="text-[17px] font-semibold tracking-tight bg-gradient-to-r from-blue-700 to-green-800 bg-clip-text text-transparent">
+      Mubiligi Catholic School
+    </h1>
+    <p className="text-gray-600 text-[13px] mb-1">
+      Manage students across academic years
+    </p>
+    <div className="flex items-center gap-2 mt-1">
+      <span className="px-2.5 py-0.5 text-[12px] font-normal rounded-lg 
+        bg-blue-700 text-white">
+        Academic Year: 2025 – 2026
+      </span>
 
-        <div className="flex gap-3">
-          <button className="px-4 py-2 text-[14px] font-semibold rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all duration-200 flex items-center gap-2">
-            <Filter className="w-4 h-4" />
-            Filter
-          </button>
+      <span className="px-2.5 py-0.5 text-[12px] font-normal rounded-lg 
+        bg-green-700 text-white ">
+        Term 1
+      </span>
+    </div>
 
-          <button className="px-4 py-2 text-[14px] font-semibold rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 text-white hover:bg-green-800 transition-all duration-200 flex items-center gap-2 shadow-sm">
-            <FileText className="w-4 h-4" />
-            View Reports
-          </button>
-        </div>
-      </header>
+
+  </div>
+
+  <div className="flex gap-3">
+    <button className="px-4 py-2 text-[14px] font-semibold rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all duration-200 flex items-center gap-2">
+      <Filter className="w-4 h-4" />
+      Filter
+    </button>
+
+    <button className="px-4 py-2 text-[14px] font-semibold rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 text-white hover:bg-green-800 transition-all duration-200 flex items-center gap-2 shadow-sm">
+      <FileText className="w-4 h-4" />
+      View Reports
+    </button>
+  </div>
+</header>
+
 
       {/* Main Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
