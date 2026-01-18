@@ -7,9 +7,10 @@ import 'react-day-picker/dist/style.css'
 type Props = {
   value?: Date
   onChange: (date: Date | undefined) => void
+  openDirection?: 'up' | 'down'
 }
 
-export default function ModernDatePicker({ value, onChange }: Props) {
+export default function ModernDatePicker({ value, onChange, openDirection = 'down' }: Props) {
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -44,7 +45,9 @@ export default function ModernDatePicker({ value, onChange }: Props) {
 
       {/* Calendar dropdown */}
       {open && (
-        <div className="absolute z-50 mt-2 origin-top rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-black ring-opacity-5 animate-in fade-in-0 zoom-in-95">
+        <div className={`absolute z-50 origin-top rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-black ring-opacity-5 animate-in fade-in-0 zoom-in-95 ${
+          openDirection === 'up' ? 'bottom-full mb-2' : 'top-full mt-2'
+        }`}>
           <DayPicker
             mode="single"
             selected={value}

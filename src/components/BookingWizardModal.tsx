@@ -83,12 +83,12 @@ export default function BookingWizardModal({ onClose }: Props) {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative flex min-h-full items-center justify-center p-4">
-        <div className="relative w-full max-w-2xl rounded-2xl bg-white shadow-2xl">
+      <div className="relative flex  items-center justify-center p-4">
+        <div className="relative w-full min-h-full max-w-2xl rounded-2xl bg-white shadow-2xl">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-gray-100 px-8 py-6">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Book Transportation</h2>
+              <h2 className="text-[23px] font-semibold text-gray-800">Book Transportation</h2>
               <p className="mt-1 text-sm text-gray-500">Complete the wizard to request student transport</p>
             </div>
             <button

@@ -19,6 +19,8 @@ import {
   ArrowRight
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import BookingWizardModal from '../components/BookingWizardModal'
+import { bs } from 'date-fns/locale'
 
 // Mock data for demonstration
 const mockBookings = [
@@ -147,6 +149,7 @@ function Bookings() {
 
   return (
     <div className='w-full flex-1 space-y-6 h-full'>
+      {showBookingModal && (<BookingWizardModal onClose={()=> setShowBookingModal(false)} />)}
       {/* Header */}
       <header className="w-full px-6 py-4 bg-white border-b border-gray-200 flex justify-between items-center">
         <div>
